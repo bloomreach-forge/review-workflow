@@ -1,0 +1,4 @@
+definitions:
+  config:
+    /hippo:configuration/hippo:workflows/default/handle/frontend:renderer/review:
+      onlineRequestReview.enabled: true

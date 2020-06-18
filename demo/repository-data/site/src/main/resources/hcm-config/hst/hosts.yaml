@@ -1,0 +1,26 @@
+definitions:
+  config:
+    /hst:hst/hst:hosts/dev-localhost:
+      .meta:residual-child-node-category: content
+      jcr:primaryType: hst:virtualhostgroup
+      hst:defaultport: 8080
+      /localhost:
+        .meta:residual-child-node-category: content
+        jcr:primaryType: hst:virtualhost
+        /hst:root:
+          .meta:residual-child-node-category: content
+          jcr:primaryType: hst:mount
+          hst:homepage: root
+          hst:mountpoint: /hst:myproject/hst:sites/myproject
+          /preview:
+            .meta:residual-child-node-category: content
+            jcr:primaryType: hst:mount
+            hst:alias: reviewworkflow
+            hst:type: preview
+          /rest:
+            .meta:residual-child-node-category: content
+            jcr:primaryType: hst:mount
+            hst:alias: rest
+            hst:ismapped: false
+            hst:namedpipeline: JaxrsRestPlainPipeline
+            hst:types: [rest]

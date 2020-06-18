@@ -1,0 +1,6 @@
+group:
+  name: myproject
+  after: [hippo-cms, workflow-notifications]
+project: myproject
+module:
+  name: myproject-repository-data-application

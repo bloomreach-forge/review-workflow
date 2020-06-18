@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.onehippo.cms7</groupId>
+        <artifactId>hippo-cms7-project</artifactId>
+        <version>31.2.0</version>
+    </parent>
+
+    <name>brXM Review Workflow Addon</name>
+    <description>Review Workflow Addon</description>
+    <groupId>org.bloomreach.forge.review-workflow</groupId>
+    <artifactId>review-workflow</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+    <url>https://www.bloomreach.com/</url>
+    <inceptionYear>2016</inceptionYear>
+
+    <developers>
+        <developer>
+            <id>ksalic</id>
+            <email>kenan.salic@bloomreach.com</email>
+            <name>Kenan Salic</name>
+            <organization>Bloomreach</organization>
+            <roles>
+                <role>Solution Architect</role>
+            </roles>
+        </developer>
+        <developer>
+            <id>bcanvural</id>
+            <email>bariscan.vural@bloomreach.com</email>
+            <name>Baris Can Vural</name>
+            <organization>Bloomreach</organization>
+            <roles>
+                <role>Software Engineer</role>
+            </roles>
+        </developer>
+    </developers>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <hippo.cms.version>14.2.0</hippo.cms.version>
+        <hippo.hst.version>14.2.0</hippo.hst.version>
+        <hippo.repository.version>14.2.0</hippo.repository.version>
+        <hippo-services.version>14.2.0</hippo-services.version>
+        <hippo.plugin.selections.version>14.2.0</hippo.plugin.selections.version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>Hippo Enterprise Software License</name>
+            <url>https://www.bloomreach.com/</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <repositories>
+        <repository>
+            <id>hippo</id>
+            <name>Hippo maven 2 repository.</name>
+            <url>http://maven.onehippo.com/maven2/</url>
+        </repository>
+        <repository>
+            <id>hippo-maven2-enterprise</id>
+            <name>Hippo Maven 2 Enterprise</name>
+            <url>https://maven.onehippo.com/maven2-enterprise/</url>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+        </repository>
+        <repository>
+            <id>hippo-forge</id>
+            <name>Hippo Forge Maven 2 repository.</name>
+            <url>https://maven.onehippo.com/maven2-forge/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+            <releases>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <layout>default</layout>
+        </repository>
+    </repositories>
+
+    <scm>
+        <connection>scm:git:git@github.com:bloomreach-forge/review-workflow.git</connection>
+        <developerConnection>scm:git:git@github.com:bloomreach-forge/review-workflow.git</developerConnection>
+        <url>https://github.com/bloomreach-forge/review-workflow.git</url>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <name>Hippo Maven 2 Forge Repository</name>
+            <id>hippo-maven2-forge</id>
+            <url>https://maven.onehippo.com/content/repositories/forge-releases/</url>
+            <uniqueVersion>false</uniqueVersion>
+        </repository>
+    </distributionManagement>
+
+    <issueManagement>
+        <url>https://issues.onehippo.com/browse/HIPFORGE</url>
+    </issueManagement>
+
+    <organization>
+        <name>Bloomreach</name>
+        <url>https://www.bloomreach.com</url>
+    </organization>
+
+    <modules>
+        <module>shared</module>
+        <module>repository</module>
+        <module>frontend</module>
+        <module>hst</module>
+    </modules>
+
+</project>
