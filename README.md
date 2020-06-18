@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Review/Assignment Workflow
 
 ## Introduction
