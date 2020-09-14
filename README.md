@@ -14,7 +14,7 @@ The assigned group's members are the only ones that can accept or reject the req
 |:----------:|:--------:|
 | 12.0       | 0.2.x    |
 |:----------:|:--------:|
-| 14.2.0       | 1.0.0    |
+| 14.2.0       | 1.0.1    |
 
 See [CHANGES](CHANGES.md) for release notes.
 
@@ -157,7 +157,7 @@ Set ```/hippo:configuration/hippo:workflows/default/handle/frontend:renderer/rev
 
  * internal assign list:
 
-    This is an additional list of values you can add to the existing user list. You can also create department values by adding e.g. key: auto_${username} value: Sales department. The review will be assigned to the ${user}
+    This is an additional list of values you can add to the group list.
 
  * online request list
 

@@ -1,5 +1,9 @@
 # Review/Assignment Workflow
 
+## 1.0.1
+
+* DocumentReviewWorkflowImpl makes use of the internal locking mechanism to avoid concurrency issues
+
 ## 1.0.0
 
 * Upgrade to v14

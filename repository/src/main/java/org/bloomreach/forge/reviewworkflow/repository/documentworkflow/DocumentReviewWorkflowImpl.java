@@ -1,17 +1,12 @@
 package org.bloomreach.forge.reviewworkflow.repository.documentworkflow;
 
 import org.bloomreach.forge.reviewworkflow.cms.workflow.ReviewWorkflow;
+import org.hippoecm.repository.api.DocumentWorkflowAction;
 import org.hippoecm.repository.api.WorkflowException;
-import org.onehippo.repository.documentworkflow.DocumentHandle;
 import org.onehippo.repository.documentworkflow.DocumentWorkflowImpl;
-import org.onehippo.repository.scxml.SCXMLWorkflowContext;
-import org.onehippo.repository.scxml.SCXMLWorkflowExecutor;
 
 import java.rmi.RemoteException;
 import java.util.Date;
-import java.util.HashMap;
-
-import static java.util.Collections.singletonMap;
 
 public class DocumentReviewWorkflowImpl extends DocumentWorkflowImpl implements ReviewWorkflow {
 
@@ -20,60 +15,57 @@ public class DocumentReviewWorkflowImpl extends DocumentWorkflowImpl implements 
 
     @Override
     public void requestReview(String assignTo) throws WorkflowException {
-        getWorkflowExecutor().start();
-        getWorkflowExecutor().triggerAction("requestReview", singletonMap("assignTo", assignTo));
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("requestReview");
+        dfa.addEventPayload("assignTo", assignTo);
+        triggerAction(dfa);
     }
 
     @Override
     public void requestReviewOnline(String email, String uuid) throws WorkflowException {
-        getWorkflowExecutor().start();
-        final HashMap<String, String> payload = new HashMap<String, String>() {{
-            put("email", email);
-            put("uuid", uuid);
-        }};
-        getWorkflowExecutor().triggerAction("onlineRequestReview", payload);
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("onlineRequestReview");
+        dfa.addEventPayload("email", email);
+        dfa.addEventPayload("uuid", uuid);
+        triggerAction(dfa);
     }
 
     @Deprecated
     @Override
     public void requestPublicationReview(final Date publicationDate) throws WorkflowException {
-        getWorkflowExecutor().start();
-        getWorkflowExecutor().triggerAction("requestReview", singletonMap("targetDate", publicationDate));
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("requestReview");
+        dfa.addEventPayload("targetDate", publicationDate);
+        triggerAction(dfa);
     }
 
     @Override
     public void acceptReview() throws WorkflowException {
-        SCXMLWorkflowExecutor<SCXMLWorkflowContext, DocumentHandle> executor = getWorkflowExecutor();
-        executor.start();
-        executor.triggerAction("acceptReview");
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("acceptReview");
+        triggerAction(dfa);
     }
 
     @Override
     public void rejectReview(String reason) throws WorkflowException {
-        SCXMLWorkflowExecutor<SCXMLWorkflowContext, DocumentHandle> executor = getWorkflowExecutor();
-        executor.start();
-        executor.triggerAction("rejectReview", singletonMap("reason", reason));
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("rejectReview");
+        dfa.addEventPayload("reason", reason);
+        triggerAction(dfa);
     }
 
     @Override
     public void cancelReview() throws WorkflowException {
-        SCXMLWorkflowExecutor<SCXMLWorkflowContext, DocumentHandle> executor = getWorkflowExecutor();
-        executor.start();
-        executor.triggerAction("cancelReview");
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("cancelReview");
+        triggerAction(dfa);
     }
 
     @Override
     public void dropReview() throws WorkflowException {
-        SCXMLWorkflowExecutor<SCXMLWorkflowContext, DocumentHandle> executor = getWorkflowExecutor();
-        executor.start();
-        executor.triggerAction("dropReview");
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("dropReview");
+        triggerAction(dfa);
     }
 
     @Override
     public boolean isEligibleForReview(final String id) throws WorkflowException {
-        SCXMLWorkflowExecutor<SCXMLWorkflowContext, DocumentHandle> executor = getWorkflowExecutor();
-        executor.start();
-        final Object o = executor.triggerAction("isEligibleForReview", singletonMap("id", id));
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("isEligibleForReview");
+        dfa.addEventPayload("id", id);
+        final Object o = triggerAction(dfa);
         if (o != null) {
             return (Boolean) o;
         }
