@@ -1,5 +1,11 @@
 # Review/Assignment Workflow
 
+## 1.1.0
+
+* Fix a bug where wicket session id was being used instead of jcr session
+* Change signature of AssignableGroupsProvider so that the document context can be acquired to provide a more flexible
+dropdown list
+
 ## 1.0.1
 
 * DocumentReviewWorkflowImpl makes use of the internal locking mechanism to avoid concurrency issues
