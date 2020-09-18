@@ -8,7 +8,8 @@ import java.util.Set;
 public interface AssignableGroupsProvider {
     /**
      * @param currentUserId Currently logged in user's user id
+     * @param docAbsolutePath Absolute path of the document for which a review request is being asked
      * @return Set of group Ids
      */
-    Set<String> provideGroups(final String currentUserId);
+    Set<String> provideGroups(final String currentUserId, String docAbsolutePath);
 }
