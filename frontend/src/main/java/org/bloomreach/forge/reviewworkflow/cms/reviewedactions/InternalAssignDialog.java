@@ -6,6 +6,7 @@ import org.hippoecm.addon.workflow.IWorkflowInvoker;
 import org.hippoecm.frontend.service.IEditorManager;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.hst.site.HstServices;
+import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.cms7.services.HippoServiceRegistry;
 import org.onehippo.forge.selection.frontend.model.ListItem;
 import org.onehippo.forge.selection.frontend.model.ValueList;
@@ -36,8 +37,8 @@ public class InternalAssignDialog extends AbstractAssignDialog {
         }
         final AssignableGroupsProvider assignableGroupsProvider = HstServices.getComponentManager().getComponent(AssignableGroupsProvider.class.getName());
         if (assignableGroupsProvider != null) {
-            final String currentUserId = UserSession.get().getId();
-            final Set<String> assignableGroups = assignableGroupsProvider.provideGroups(currentUserId);
+            final String currentUserId = UserSession.get().getJcrSession().getUserID();
+            final Set<String> assignableGroups = assignableGroupsProvider.provideGroups(currentUserId, JcrUtils.getNodePathQuietly(nodeModel.getObject()));
             if (assignableGroups != null) {
                 groupsSet.addAll(assignableGroups);
             }

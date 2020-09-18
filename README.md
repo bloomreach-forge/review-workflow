@@ -22,6 +22,24 @@ For release processes, see [Hippo Forge Release Process](https://onehippo-forge.
 
 ## Install
 
+* Make sure you have the forge Maven2 repository reference in the root pom.xml of your project.
+
+```xml
+<repositories>
+ 
+  <!-- SNIP -->
+ 
+  <repository>
+    <id>hippo-maven2</id>
+    <name>Hippo Maven 2 Repository</name>
+    <url>https://maven.onehippo.com/maven2-forge//</url>
+  </repository>
+ 
+  <!-- SNIP -->
+ 
+</repositories>
+```
+
 * cms-dependencies pom.xml
 
 ```xml
@@ -38,34 +56,16 @@ For release processes, see [Hippo Forge Release Process](https://onehippo-forge.
         </dependency>
 ```
 
-* (Optional for request online review) site pom.xml
-
-```xml
-        <dependency>
-            <groupId>org.bloomreach.forge.review-workflow</groupId>
-            <artifactId>review-workflow-hst</artifactId>
-            <version>${review-workflow.version}</version>
-        </dependency>
-```
-
-* (Optional for request online review) hst-config.properties
-
-
-```properties
-     reviewworkflowuser.repository.address = vm://
-     reviewworkflowuser.repository.user.name = reviewonlineuser
-     reviewworkflowuser.repository.pool.name = reviewworkflowuser
-     reviewworkflowuser.repository.password =
-```
 
 
   
-* (Optional) shared dependencies (Can be deployed in cms.war by adding dependency in cms/pom.xml instead if *request online review* not used)
+* Shared dependencies (Can be deployed in cms.war by adding dependency in cms/pom.xml instead if *request online review* not used)
 
-    * cargo profile:
+    * root pom.xml:
 
     ```xml
     ...
+  <!-- pom.xml's dependency section (not dependencyManagement) -->
             <dependencies>
                 <dependency>
                     <groupId>org.bloomreach.forge.review-workflow</groupId>
@@ -73,6 +73,8 @@ For release processes, see [Hippo Forge Release Process](https://onehippo-forge.
                     <version>${review-workflow.version}</version>
                 </dependency>
             </dependencies>
+  
+  <!---cargo profile -->
             ....
              <container>
                 <systemProperties>
@@ -101,6 +103,27 @@ For release processes, see [Hippo Forge Release Process](https://onehippo-forge.
                    <include>org.onehippo.cms7:hippo-addon-review-workflow-shared</include>
     ....
     ```
+
+* (Optional for request online review) site pom.xml
+
+```xml
+        <dependency>
+            <groupId>org.bloomreach.forge.review-workflow</groupId>
+            <artifactId>review-workflow-hst</artifactId>
+            <version>${review-workflow.version}</version>
+        </dependency>
+```
+
+* (Optional for request online review) hst-config.properties
+
+
+```properties
+     reviewworkflowuser.repository.address = vm://
+     reviewworkflowuser.repository.user.name = reviewonlineuser
+     reviewworkflowuser.repository.pool.name = reviewworkflowuser
+     reviewworkflowuser.repository.password =
+```
+
 
 ## Build/Run Demo
 
@@ -222,6 +245,20 @@ java -jar fakeSMTP-2.0.jar -s  -p 2525 -a 127.0.0.1
 ![screenshot6](/images/screenshot6.png "Logo Title Text 1")
 ![screenshot7](/images/screenshot7.png "Logo Title Text 1")
 ![screenshot8](/images/screenshot8.png "Logo Title Text 1")
+
+## Extend
+
+The dropdown that contains assignable groups can be populated dynamically, based on currently logged in user and/or
+the document in question. To achieve this:
+* Add a custom spring bean definition to cms/src/main/resources/META-INF/hst-assembly/overrides in which you implement
+org.bloomreach.forge.reviewworkflow.cms.reviewedactions.AssignableGroupsProvider 
+
+```xml
+  <!--keep the id, change the fully qualified class name-->
+  <bean id="org.bloomreach.forge.reviewworkflow.cms.reviewedactions.AssignableGroupsProvider" class="com.bloomreach.your.implementation"/>
+```
+
+* Note that you could also pass a jcr session to this bean in the spring configuration
 
 
 
