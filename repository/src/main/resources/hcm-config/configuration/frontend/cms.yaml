@@ -13,7 +13,7 @@ definitions:
               type: string
               value: content/documents//element(*,hippo:request)[(@jcr:primaryType='hippostdpubwf:request'
                 and (not(@hippostdpubwf:type = 'rejected') or @hippostdpubwf:username='__USER__'))
-                or (@jcr:primaryType='reviewworkflow:request' and not(@reviewworkflow:owner='__USER__' and not(@reviewworkflow:state='rejected' )
+                or (@jcr:primaryType='reviewworkflow:request' and not(@reviewworkflow:owner='__USER__')
                 and ( @reviewworkflow:state='request'
                 or @reviewworkflow:state='rejected'))] order by @hippostdpubwf:creationDate,
                 @reviewworkflow:creationdate DESC
