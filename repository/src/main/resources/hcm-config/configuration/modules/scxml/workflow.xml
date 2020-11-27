@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!--
-  Copyright 2013-2019 Hippo B.V. (http://www.onehippo.com)
+  Copyright 2013-2020 Hippo B.V. (http://www.onehippo.com)
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -347,10 +347,13 @@
                                 <hippo:action action="onlineRequestReview" enabledExpr="false"/>
                                 <if cond="request.owner==user">
                                     <hippo:action action="cancelReview" enabledExpr="true"/>
+                                    <hippo:requestAction identifierExpr="request.identity" action="cancelReview" enabledExpr="true"/>
                                 </if>
                                 <if cond="(request.owner!=user and isUserPartOfAssignedGroup(request.assignTo)) or workflowContext.isGranted(unpublished,'hippo:admin') or 'reviewonlineuser'==user">
                                     <hippo:action action="acceptReview" enabledExpr="true"/>
+                                    <hippo:requestAction identifierExpr="request.identity" action="acceptReview" enabledExpr="true"/>
                                     <hippo:action action="rejectReview" enabledExpr="true"/>
+                                    <hippo:requestAction identifierExpr="request.identity" action="rejectReview" enabledExpr="true"/>
                                 </if>
                                 <elseif cond="request.isStateRejected">
                                     <hippo:action action="requestReview" enabledExpr="false"/>
@@ -359,6 +362,7 @@
                                     <hippo:action action="rejectReview" enabledExpr="false"/>
                                     <if cond="request.owner==user || isUserPartOfAssignedGroup(request.assignTo) or workflowContext.isGranted(unpublished,'hippo:admin')">
                                         <hippo:action action="dropReview" enabledExpr="true"/>
+                                        <hippo:requestAction identifierExpr="request.identity" action="dropReview" enabledExpr="true"/>
                                     </if>
                                 </elseif>
                             </if>
@@ -414,24 +418,24 @@
                     </foreach>
                 </onentry>
                 <transition event="isEligibleForReview">
-                    <hippo:isEligibleForReview requestExpr="request" id="_event.data?.id"/>
+                    <hippo:isEligibleForReview id="_event.data?.id"/>
                 </transition>
 
                 <transition event="acceptReview">
-                    <hippo:acceptReview requestExpr="request" reviewer="user"/>
-                    <hippo:deleteRequest requestExpr="request"/>
+                    <hippo:acceptReview requestExpr="_event.data?.request" reviewer="user"/>
+                    <hippo:deleteRequest requestExpr="_event.data?.request"/>
                 </transition>
 
                 <transition event="cancelReview">
-                    <hippo:deleteRequest requestExpr="request"/>
+                    <hippo:deleteRequest requestExpr="_event.data?.request"/>
                 </transition>
 
                 <transition event="dropReview">
-                    <hippo:deleteRequest requestExpr="request"/>
+                    <hippo:deleteRequest requestExpr="_event.data?.request"/>
                 </transition>
 
                 <transition event="rejectReview">
-                    <hippo:rejectReview requestExpr="request" reviewer="user" reasonExpr="_event.data?.reason"/>
+                    <hippo:rejectReview requestExpr="_event.data?.request" reviewer="user" reasonExpr="_event.data?.reason"/>
                 </transition>
 
                 <!-- target-less transition to 'accept' a specific request -->

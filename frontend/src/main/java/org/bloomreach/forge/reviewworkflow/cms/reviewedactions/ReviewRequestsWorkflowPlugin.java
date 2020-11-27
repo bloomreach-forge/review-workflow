@@ -7,7 +7,7 @@ import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model.ReviewRequestModel;
 import org.bloomreach.forge.reviewworkflow.cms.workflow.ReviewWorkflow;
-import org.bloomreach.forge.reviewworkflow.repository.documentworkflow.ReviewWorkflowNodeType;
+import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.addon.workflow.ConfirmDialog;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.TextDialog;
@@ -30,8 +30,6 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -41,12 +39,6 @@ import java.util.UUID;
 public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin {
 
     private static final Logger log = LoggerFactory.getLogger(ReviewRequestsWorkflowPlugin.class);
-
-    private boolean isRequestRejected(final ReviewRequestModel reviewRequestModel) {
-        final Request request = reviewRequestModel.getObject();
-        final String state = request.getState();
-        return state.equals("review-rejected");
-    }
 
     private final String internalAssignListLocation;
     private final String onlineRequestListLocation;
@@ -66,27 +58,47 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
         final Map<String, Serializable> info = getHints();
 
-        final List<IModel<Request>> requests = new ArrayList<>();
         WorkflowDescriptorModel model = getModel();
         Workflow workflow = model.getWorkflow();
-        Request rejectedRequestTemp = null;
+
         if (workflow != null && info != null) {
             if (info.containsKey("requests")) {
                 Map<String, Map<String, ?>> infoRequests = (Map<String, Map<String, ?>>) info.get("requests");
                 for (Map.Entry<String, Map<String, ?>> entry : infoRequests.entrySet()) {
                     final ReviewRequestModel reviewRequestModel = new ReviewRequestModel(entry.getKey(), entry.getValue());
-                    if (isRequestRejected(reviewRequestModel)) {
-                        rejectedRequestTemp = reviewRequestModel.getObject();
+                    Request request = reviewRequestModel.getObject();
+                    if (isStateReviewRejected(request) && dropReviewEnabled && isActionAllowed(info, "dropReview")) {
+                        add(createDropReview(request));
                     }
-                    requests.add(reviewRequestModel);
+                    if(isStateReviewRequest(request)) {
+
+                        if (acceptReviewEnabled && isActionAllowed(info, "acceptReview")) {
+                            add(createAcceptReview(request));
+                        }
+
+                        if (rejectReviewEnabled && isActionAllowed(info, "rejectReview")) {
+                            add(createRejectReview(request));
+                        }
+
+                        if(cancelReviewEnabled && isActionAllowed(info, "cancelReview")) {
+                            add(createCancelReview(request));
+                        }
+                    }
                 }
             }
         }
-        final Request rejectedRequest = rejectedRequestTemp;
 
+        if (requestReviewEnabled && info != null && isActionAllowed(info, "requestReview")) {
+            add(createRequestReview());
+        }
 
-        final StdWorkflow requestReview;
-        add(requestReview = new StdWorkflow("requestReview", new StringResourceModel("request-review", this, null), context, getModel()) {
+        if (onlineRequestReviewEnabled && info != null && isActionAllowed(info, "onlineRequestReview")) {
+            add(createRequestReviewOnline());
+        }
+    }
+
+    protected StdWorkflow createRequestReview() {
+        return new StdWorkflow("requestReview", new StringResourceModel("request-review", this, null), getPluginContext(), getModel()) {
 
             public String user = ""; //this variable should not be final as it is set later by the dialog
 
@@ -120,10 +132,11 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                 workflow.requestReview(user);
                 return null;
             }
-        });
+        };
+    }
 
-        final StdWorkflow requestReviewOnline;
-        add(requestReviewOnline = new StdWorkflow("onlineRequestReview", new StringResourceModel("request-review-online", this, null), context, getModel()) {
+    protected StdWorkflow createRequestReviewOnline() {
+        return  new StdWorkflow("onlineRequestReview", new StringResourceModel("request-review-online", this, null), getPluginContext(), getModel()) {
 
             public String user = ""; //this variable should not be final as it is set later by the dialog
 
@@ -157,31 +170,12 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                 workflow.requestReviewOnline(user, UUID.randomUUID().toString());
                 return null;
             }
-        });
+        };
+    }
 
-        final StdWorkflow acceptReview;
-        add(acceptReview = new StdWorkflow("acceptReview", new StringResourceModel("accept-review", this, null), context, getModel()) {
+    protected StdWorkflow createCancelReview(final Request request) {
 
-            @Override
-            public String getSubMenu() {
-                return new StringResourceModel("review", ReviewRequestsWorkflowPlugin.this, null).getString();
-            }
-
-            @Override
-            protected Component getIcon(final String id) {
-                return HippoIcon.fromSprite(id, Icon.CHECK_CIRCLE);
-            }
-
-            @Override
-            protected String execute(Workflow wf) throws Exception {
-                ReviewWorkflow workflow = (ReviewWorkflow) wf;
-                workflow.acceptReview();
-                return null;
-            }
-        });
-
-        final StdWorkflow cancelReview;
-        add(cancelReview = new StdWorkflow("cancelReview", new StringResourceModel("cancel-review", this, null), context, getModel()) {
+        return new StdWorkflow("cancelReview", new StringResourceModel("cancel-review", this, null), getPluginContext(), getModel()) {
 
             @Override
             public String getSubMenu() {
@@ -196,13 +190,14 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
             @Override
             protected String execute(Workflow wf) throws Exception {
                 ReviewWorkflow workflow = (ReviewWorkflow) wf;
-                workflow.cancelReview();
+                workflow.cancelReview(request.getId());
                 return null;
             }
-        });
+        };
+    }
 
-        final StdWorkflow rejectReview;
-        add(rejectReview = new StdWorkflow("rejectReview", new StringResourceModel("reject-review", this, null), context, getModel()) {
+    protected StdWorkflow createRejectReview(final Request request) {
+        return new StdWorkflow("rejectReview", new StringResourceModel("reject-review", this, null), getPluginContext(), getModel()) {
 
             public String reason;
 
@@ -231,23 +226,26 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                     }
                 };
             }
-
             @Override
             protected String execute(Workflow wf) throws Exception {
-                ReviewWorkflow workflow = (ReviewWorkflow) wf;
-                workflow.rejectReview(reason);
+                if(wf instanceof ReviewWorkflow) {
+                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                    workflow.rejectReview(request.getId(), reason);
+                }
                 return null;
             }
-        });
+        };
+    }
 
-        final StdWorkflow dropReview;
-        add(dropReview = new StdWorkflow("dropReview", new StringResourceModel("show-reject", this, null), context, getModel()) {
+    protected StdWorkflow createDropReview(final Request request) {
+
+        return new StdWorkflow("dropReview", new StringResourceModel("show-reject", this, null), getPluginContext(), getModel()) {
 
             @Override
             protected IDialogService.Dialog createRequestDialog() {
                 IModel<String> reason = null;
                 try {
-                    String id = rejectedRequest.getId();
+                    String id = request.getId();
                     Node node = UserSession.get().getJcrSession().getNodeByIdentifier(id);
                     if (node != null && node.hasProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON)) {
                         reason = Model.of(node.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString());
@@ -274,8 +272,10 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                ReviewWorkflow workflow = (ReviewWorkflow) wf;
-                workflow.dropReview();
+                if (wf instanceof ReviewWorkflow){
+                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                    workflow.dropReview(request.getId());
+                }
                 return null;
             }
 
@@ -288,38 +288,31 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
             protected Component getIcon(final String id) {
                 return HippoIcon.fromSprite(id, Icon.TIMES);
             }
-        });
+        };
+    }
 
-        if (requestReviewEnabled && info != null && isActionAllowed(info, "requestReview")) {
-            requestReview.setVisible(true);
-        } else {
-            requestReview.setVisible(false);
-        }
-        if (onlineRequestReviewEnabled && info != null && isActionAllowed(info, "onlineRequestReview")) {
-            requestReviewOnline.setVisible(true);
-        } else {
-            requestReviewOnline.setVisible(false);
-        }
-        if (acceptReviewEnabled && info != null && isActionAllowed(info, "acceptReview")) {
-            acceptReview.setVisible(true);
-        } else {
-            acceptReview.setVisible(false);
-        }
-        if (cancelReviewEnabled && info != null && isActionAllowed(info, "cancelReview")) {
-            cancelReview.setVisible(true);
-        } else {
-            cancelReview.setVisible(false);
-        }
-        if (rejectReviewEnabled && info != null && isActionAllowed(info, "rejectReview")) {
-            rejectReview.setVisible(true);
-        } else {
-            rejectReview.setVisible(false);
-        }
-        if (dropReviewEnabled && info != null && isActionAllowed(info, "dropReview")) {
-            dropReview.setVisible(true);
-        } else {
-            dropReview.setVisible(false);
-        }
+    protected StdWorkflow createAcceptReview(final Request request) {
+        return new StdWorkflow("acceptReview", new StringResourceModel("accept-review", this, null), getPluginContext(), getModel()) {
+
+            @Override
+            public String getSubMenu() {
+                return new StringResourceModel("review", ReviewRequestsWorkflowPlugin.this, null).getString();
+            }
+
+            @Override
+            protected Component getIcon(final String id) {
+                return HippoIcon.fromSprite(id, Icon.CHECK_CIRCLE);
+            }
+
+            @Override
+            protected String execute(Workflow wf) throws Exception {
+                if (wf instanceof ReviewWorkflow) {
+                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                    workflow.acceptReview(request.getId());
+                }
+                return null;
+            }
+        };
     }
 
     protected IModel<String> getDocumentName() {
@@ -331,5 +324,13 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
         } catch (RepositoryException ignored) {
         }
         return new StringResourceModel("unknown", this, null);
+    }
+
+    protected boolean isStateReviewRejected(final Request request) {
+        return "review-rejected".equals(request.getState());
+    }
+
+    protected boolean isStateReviewRequest(final Request request) {
+        return "review-request".equals(request.getState());
     }
 }
