@@ -1,6 +1,6 @@
 package org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model;
 
-import org.bloomreach.forge.reviewworkflow.repository.documentworkflow.ReviewWorkflowNodeType;
+import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.frontend.plugins.reviewedactions.model.Request;
 import org.hippoecm.frontend.plugins.reviewedactions.model.RequestModel;
 import org.hippoecm.frontend.session.UserSession;
@@ -27,11 +27,10 @@ public class ReviewRequestModel extends RequestModel {
             Session session = UserSession.get().getJcrSession();
             Node node = session.getNodeByIdentifier(request.getId());
             if (node.isNodeType(ReviewWorkflowNodeType.REVIEWWORKFLOW_REQUEST)) {
-                String state = "review-" + node.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE).getString();
-                request = new ReviewRequestWrapper(request, state);
+                request = new ReviewRequestWrapper(request, node);
             }
         } catch (RepositoryException e) {
-            log.error(e.getMessage());
+            log.error("Error loading the request in the model",e);
         }
         return request;
     }
