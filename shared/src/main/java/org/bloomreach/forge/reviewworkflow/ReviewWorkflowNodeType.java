@@ -1,4 +1,4 @@
-package org.bloomreach.forge.reviewworkflow.repository.documentworkflow;
+package org.bloomreach.forge.reviewworkflow;
 
 public interface ReviewWorkflowNodeType {
 

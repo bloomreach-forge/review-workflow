@@ -1,5 +1,6 @@
 package org.bloomreach.forge.reviewworkflow.repository.documentworkflow;
 
+import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.repository.HippoStdPubWfNodeType;
 import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.repository.documentworkflow.DocumentVariant;
