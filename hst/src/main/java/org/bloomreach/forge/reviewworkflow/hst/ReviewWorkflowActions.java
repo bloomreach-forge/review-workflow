@@ -1,6 +1,7 @@
 package org.bloomreach.forge.reviewworkflow.hst;
 
 import org.bloomreach.forge.reviewworkflow.cms.workflow.ReviewWorkflow;
+import org.bloomreach.forge.reviewworkflow.cms.workflow.ReviewWorkflowUtils;
 import org.hippoecm.hst.container.RequestContextProvider;
 import org.hippoecm.hst.content.beans.ObjectBeanManagerException;
 import org.hippoecm.hst.content.beans.manager.workflow.WorkflowPersistenceManagerImpl;
@@ -12,17 +13,17 @@ import org.hippoecm.repository.api.WorkflowException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.jcr.Credentials;
-import javax.jcr.Repository;
-import javax.jcr.RepositoryException;
-import javax.jcr.Session;
+import javax.jcr.*;
 import java.io.Serializable;
 import java.rmi.RemoteException;
 import java.util.Map;
 
-public class ReviewWorkflowUtils {
+/**
+ * Execute WF actions from HST
+ */
+public class ReviewWorkflowActions {
 
-    private static final Logger log = LoggerFactory.getLogger(ReviewWorkflowUtils.class);
+    private static final Logger log = LoggerFactory.getLogger(ReviewWorkflowActions.class);
 
     private Credentials reviewWorkflowCredentials;
 
@@ -65,17 +66,21 @@ public class ReviewWorkflowUtils {
         return false;
     }
 
-    public void execute(final HippoBean bean, Type type, String reason) throws RepositoryException {
+    public void execute(final String workflowId, final HippoBean bean, Type type, String reason) throws RepositoryException {
         final Session persistableSession = getReviewWorkflowSession();
 
         try {
             final WorkflowPersistenceManagerImpl wpm = new WorkflowPersistenceManagerImpl(persistableSession, RequestContextProvider.get().getContentBeansTool().getObjectConverter(), null);
             final Object object = wpm.getObject(bean.getPath());
             final ReviewWorkflow reviewWorkflow = (ReviewWorkflow) wpm.getWorkflow("default", ((HippoDocument) object).getNode().getParent());
-            if (type.equals(Type.ACCEPT)) {
-                reviewWorkflow.acceptReview();
-            } else if (type.equals(Type.REJECT)) {
-                reviewWorkflow.rejectReview(reason);
+
+            Node requestNode = ReviewWorkflowUtils.getRequestNodeFromWorkflowId(workflowId, persistableSession);
+            if (requestNode != null) {
+                if (type.equals(Type.ACCEPT)) {
+                    reviewWorkflow.acceptReview(requestNode.getIdentifier());
+                } else if (type.equals(Type.REJECT)) {
+                    reviewWorkflow.rejectReview(requestNode.getIdentifier(), reason);
+                }
             }
         } catch (WorkflowException | ObjectBeanManagerException e) {
             log.error(e.getMessage());
@@ -87,4 +92,5 @@ public class ReviewWorkflowUtils {
     public void setReviewWorkflowCredentials(final Credentials reviewWorkflowCredentials) {
         this.reviewWorkflowCredentials = reviewWorkflowCredentials;
     }
+
 }
