@@ -23,6 +23,8 @@ definitions:
             plugin.class: org.bloomreach.forge.reviewworkflow.cms.reviewedactions.ReviewRequestsWorkflowPlugin
             rejectReview.enabled: true
             requestReview.enabled: true
+            multipleReviewRequests.enabled: false
+            multipleReviewRequests.limit: 0
             wicket.id: ${item}
         /hipposys:config:
           documentHandleFactoryClass:

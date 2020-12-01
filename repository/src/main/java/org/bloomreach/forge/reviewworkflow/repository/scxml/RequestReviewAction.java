@@ -27,15 +27,6 @@ public class RequestReviewAction extends AbstractDocumentTaskAction<RequestRevie
         setParameter("assignTo", assignTo);
     }
 
-    public String getTargetDateExpr() {
-        return getParameter("targetDateExpr");
-    }
-
-    @SuppressWarnings("unused")
-    public void setTargetDateExpr(String targetDateExpr) {
-        setParameter("targetDateExpr", targetDateExpr);
-    }
-
     @Override
     protected RequestReviewTask createWorkflowTask() {
         return new RequestReviewTask();
@@ -45,7 +36,6 @@ public class RequestReviewAction extends AbstractDocumentTaskAction<RequestRevie
     protected void initTask(RequestReviewTask task) throws ModelException, SCXMLExpressionException {
         super.initTask(task);
         task.setContextVariant(eval(getContextVariantExpr()));
-        task.setTargetDate(eval(getTargetDateExpr()));
         task.setAssignTo(eval(getAssignTo()));
     }
 }

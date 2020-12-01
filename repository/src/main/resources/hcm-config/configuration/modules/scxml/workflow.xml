@@ -335,6 +335,8 @@
                     <!-- listGroups task will fetch the currently logged in user's groups and set it on the workflowData-->
                     <!-- which enables the usage of isUserPartOfAssignedGroup(groupName) method in groovy script above-->
                     <hippo:listGroups/>
+                    <hippo:action action="requestReview" enabledExpr="true"/>
+                    <hippo:action action="onlineRequestReview" enabledExpr="true"/>
                     <foreach item="request" array="requests.values()">
                         <!-- for all requests determine the available request actions and report them through the special 'requests'
                              feedback map variable -->
@@ -343,8 +345,6 @@
                         <if cond="request.requestType=='reviewworkflow:request'">
                             <hippo:action action="isEligibleForReview" enabledExpr="true"/>
                             <if cond="request.isStateRequest">
-                                <hippo:action action="requestReview" enabledExpr="false"/>
-                                <hippo:action action="onlineRequestReview" enabledExpr="false"/>
                                 <if cond="request.owner==user">
                                     <hippo:action action="cancelReview" enabledExpr="true"/>
                                     <hippo:requestAction identifierExpr="request.identity" action="cancelReview" enabledExpr="true"/>
@@ -369,12 +369,14 @@
                             <else>
                                 <hippo:action action="acceptReview" enabledExpr="false"/>
                                 <hippo:action action="rejectReview" enabledExpr="false"/>
-                                <hippo:action action="requestReview" enabledExpr="true"/>
-                                <hippo:action action="onlineRequestReview" enabledExpr="true"/>
                                 <hippo:action action="cancelReview" enabledExpr="false"/>
                             </else>
                         </if>
                         <if cond="request.workflowRequest">
+
+                            <hippo:action action="requestReview" enabledExpr="false"/>
+                            <hippo:action action="onlineRequestReview" enabledExpr="false"/>
+
                             <if cond="workflowContext.isGranted(request, 'hippo:editor')">
                                 <!-- editor users (granted hippo:editor) may reject and accept as well as cancel requests -->
                                 <if cond="request.workflowType!='rejected'">
