@@ -29,7 +29,7 @@ public class RequestReviewTask extends AbstractDocumentTask {
         final Node node = contextVariant.getNode(getWorkflowContext().getInternalWorkflowSession());
         ReviewRequest reviewRequest = new ReviewRequest(node, contextVariant, getWorkflowContext().getUserIdentity(), assignTo);
         final Session internalWorkflowSession = getWorkflowContext().getInternalWorkflowSession();
-        getWorkflowContext().getInternalWorkflowSession().getWorkspace().getVersionManager().checkin(contextVariant.getNode(internalWorkflowSession).getPath());
+        internalWorkflowSession.getWorkspace().getVersionManager().checkin(contextVariant.getNode(internalWorkflowSession).getPath());
         internalWorkflowSession.save();
         return reviewRequest;
     }

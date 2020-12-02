@@ -31,10 +31,7 @@ import org.slf4j.LoggerFactory;
 import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import java.io.Serializable;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 /**
  * Workflow menu plugin for the Review Workflow
@@ -49,14 +46,14 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
     public ReviewRequestsWorkflowPlugin(IPluginContext context, IPluginConfig config) {
         super(context, config);
 
-        final boolean requestReviewEnabled = config.getAsBoolean("requestReview.enabled", true);
+        final boolean requestReviewEnabled = config.getAsBoolean("requestReview.enabled", false);
         final boolean onlineRequestReviewEnabled = config.getAsBoolean("onlineRequestReview.enabled", false);
         final boolean multipleReviewsEnabled = config.getAsBoolean("multipleReviewRequests.enabled", false);
         final int maxRequests = config.getAsInteger("multipleReviewRequests.limit", 0);
-        final boolean acceptReviewEnabled = config.getAsBoolean("acceptReview.enabled", true);
-        final boolean cancelReviewEnabled = config.getAsBoolean("cancelReview.enabled", true);
-        final boolean rejectReviewEnabled = config.getAsBoolean("rejectReview.enabled", true);
-        final boolean dropReviewEnabled = config.getAsBoolean("dropReview.enabled", true);
+        final boolean acceptReviewEnabled = config.getAsBoolean("acceptReview.enabled", false);
+        final boolean cancelReviewEnabled = config.getAsBoolean("cancelReview.enabled", false);
+        final boolean rejectReviewEnabled = config.getAsBoolean("rejectReview.enabled", false);
+        final boolean dropReviewEnabled = config.getAsBoolean("dropReview.enabled", false);
 
         this.internalAssignListLocation = config.getString("internal.assign.list.path");
         this.onlineRequestListLocation = config.getString("online.request.list.path");
@@ -70,11 +67,13 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
         if (workflow != null && info != null) {
             if (info.containsKey("requests")) {
                 Map<String, Map<String, ?>> infoRequests = (Map<String, Map<String, ?>>) info.get("requests");
+
+                List<ReviewRequestWrapper> allReviewRequests = new ArrayList<>();
                 for (Map.Entry<String, Map<String, ?>> entry : infoRequests.entrySet()) {
                     final ReviewRequestModel reviewRequestModel = new ReviewRequestModel(entry.getKey(), entry.getValue());
                     Request request = reviewRequestModel.getObject();
                     if (request instanceof ReviewRequestWrapper) {
-                        ReviewRequestWrapper reviewRequest = (ReviewRequestWrapper)request;
+                        ReviewRequestWrapper reviewRequest = (ReviewRequestWrapper) request;
                         numberOfRequests++;
                         if (isStateReviewRejected(request) && dropReviewEnabled && isActionAllowed(info, "dropReview")) {
                             createDropReview(reviewRequest);
@@ -91,9 +90,14 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
                             if (cancelReviewEnabled && canCreateWorkflowAction(request, "cancelReview")) {
                                 createCancelReview(reviewRequest);
+                                allReviewRequests.add(reviewRequest);
                             }
                         }
                     }
+                }
+
+                if (allReviewRequests.size() > 1) {
+                    createCancelAllReviews(allReviewRequests);
                 }
             }
             if (requestReviewEnabled && canCreateRequestReview(multipleReviewsEnabled, numberOfRequests, maxRequests) && isActionAllowed(info, "requestReview")) {
@@ -104,49 +108,48 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                 createRequestReviewOnline();
             }
         }
-
     }
 
     protected void createRequestReview() {
         add(new StdWorkflow("requestReview", new StringResourceModel("request-review", this, null), getPluginContext(), getModel()) {
 
-                public String user = ""; //this variable should not be final as it is set later by the dialog
+            public String user = ""; //this variable should not be final as it is set later by the dialog
 
-                @Override
-                public String getSubMenu() {
-                    return new StringResourceModel("review", ReviewRequestsWorkflowPlugin.this).getString();
-                }
+            @Override
+            public String getSubMenu() {
+                return new StringResourceModel("review", ReviewRequestsWorkflowPlugin.this).getString();
+            }
 
-                @Override
-                protected Component getIcon(final String id) {
-                    return HippoIcon.fromSprite(id, Icon.CHECK_CIRCLE);
-                }
+            @Override
+            protected Component getIcon(final String id) {
+                return HippoIcon.fromSprite(id, Icon.CHECK_CIRCLE);
+            }
 
-                @Override
-                protected IDialogService.Dialog createRequestDialog() {
-                    try {
-                        Node handle = ((WorkflowDescriptorModel) getDefaultModel()).getNode();
-                        Node unpublished = getVariant(handle, WorkflowUtils.Variant.UNPUBLISHED);
-                        final IModel<String> titleModel = new StringResourceModel("assign-to-title", ReviewRequestsWorkflowPlugin.this, getDocumentName());
-                        return new InternalAssignDialog(this, new JcrNodeModel(unpublished),
-                                PropertyModel.of(this, "user"), titleModel, getEditorManager(), internalAssignListLocation);
-                    } catch (RepositoryException e) {
-                        log.error(e.getMessage());
-                    }
-                    return null;
+            @Override
+            protected IDialogService.Dialog createRequestDialog() {
+                try {
+                    Node handle = ((WorkflowDescriptorModel) getDefaultModel()).getNode();
+                    Node unpublished = getVariant(handle, WorkflowUtils.Variant.UNPUBLISHED);
+                    final IModel<String> titleModel = new StringResourceModel("assign-to-title", ReviewRequestsWorkflowPlugin.this, getDocumentName());
+                    return new InternalAssignDialog(this, new JcrNodeModel(unpublished),
+                            PropertyModel.of(this, "user"), titleModel, getEditorManager(), internalAssignListLocation);
+                } catch (RepositoryException e) {
+                    log.error(e.getMessage());
                 }
+                return null;
+            }
 
-                @Override
-                protected String execute(Workflow wf) throws Exception {
-                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
-                    workflow.requestReview(user);
-                    return null;
-                }
-            });
+            @Override
+            protected String execute(Workflow wf) throws Exception {
+                ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                workflow.requestReview(user);
+                return null;
+            }
+        });
     }
 
     protected void createRequestReviewOnline() {
-        add(  new StdWorkflow("onlineRequestReview", new StringResourceModel("request-review-online", this, null), getPluginContext(), getModel()) {
+        add(new StdWorkflow("onlineRequestReview", new StringResourceModel("request-review-online", this, null), getPluginContext(), getModel()) {
 
             public String user = ""; //this variable should not be final as it is set later by the dialog
 
@@ -185,7 +188,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
     protected void createCancelReview(final ReviewRequestWrapper request) {
 
-        add(new StdWorkflow("cancelReview"+request.getId(), new StringResourceModel("cancel-review", this, Model.of(request)), getPluginContext(), getModel()) {
+        add(new StdWorkflow("cancelReview" + request.getId(), new StringResourceModel("cancel-review", this, Model.of(request)), getPluginContext(), getModel()) {
 
             @Override
             public String getSubMenu() {
@@ -206,8 +209,34 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
         });
     }
 
+    protected void createCancelAllReviews(final List<ReviewRequestWrapper> allReviewRequests) {
+        add(new StdWorkflow("cancelAllReviewRequests", new StringResourceModel("cancel-all-review-requests", this, null), getPluginContext(), getModel()) {
+
+            @Override
+            public String getSubMenu() {
+                return new StringResourceModel("review", this, null).getString();
+            }
+
+            @Override
+            protected Component getIcon(final String id) {
+                return HippoIcon.fromSprite(id, Icon.TIMES);
+            }
+
+            @Override
+            protected String execute(Workflow wf) throws Exception {
+                if (wf instanceof ReviewWorkflow) {
+                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                    for (Request request : allReviewRequests) {
+                        workflow.cancelReview(request.getId());
+                    }
+                }
+                return null;
+            }
+        });
+    }
+
     protected void createRejectReview(final ReviewRequestWrapper request) {
-        add(new StdWorkflow("rejectReview"+request.getId(), new StringResourceModel("reject-review", this, Model.of(request)), getPluginContext(), getModel()) {
+        add(new StdWorkflow("rejectReview" + request.getId(), new StringResourceModel("reject-review", this, Model.of(request)), getPluginContext(), getModel()) {
 
             public String reason;
 
@@ -236,9 +265,10 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                     }
                 };
             }
+
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if(wf instanceof ReviewWorkflow) {
+                if (wf instanceof ReviewWorkflow) {
                     ReviewWorkflow workflow = (ReviewWorkflow) wf;
                     workflow.rejectReview(request.getId(), reason);
                 }
@@ -249,7 +279,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
     protected void createDropReview(final ReviewRequestWrapper request) {
 
-        add(new StdWorkflow("dropReview"+request.getId(), new StringResourceModel("show-reject", this, Model.of(request)), getPluginContext(), getModel()) {
+        add(new StdWorkflow("dropReview" + request.getId(), new StringResourceModel("show-reject", this, Model.of(request)), getPluginContext(), getModel()) {
 
             @Override
             protected IDialogService.Dialog createRequestDialog() {
@@ -282,7 +312,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if (wf instanceof ReviewWorkflow){
+                if (wf instanceof ReviewWorkflow) {
                     ReviewWorkflow workflow = (ReviewWorkflow) wf;
                     workflow.dropReview(request.getId());
                 }
@@ -302,7 +332,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
     }
 
     protected void createAcceptReview(final ReviewRequestWrapper request) {
-        add(new StdWorkflow("acceptReview"+request.getId(), new StringResourceModel("accept-review", this, Model.of(request)), getPluginContext(), getModel()) {
+        add(new StdWorkflow("acceptReview" + request.getId(), new StringResourceModel("accept-review", this, Model.of(request)), getPluginContext(), getModel()) {
 
             @Override
             public String getSubMenu() {
@@ -341,8 +371,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                 Optional.of(getHints())
                         .filter(hints -> hints.containsKey("requests"))
                         .map(hints -> hints.get("requests"))
-                        .map(requests -> ((Map<String,Map<String,Boolean>>)requests).get(request.getId()))
-                        .filter(Objects::nonNull)
+                        .map(requests -> ((Map<String, Map<String, Boolean>>) requests).get(request.getId()))
                         .map(requestId -> requestId.getOrDefault(requestType, false))
                         .orElse(false);
     }
@@ -356,7 +385,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
     }
 
     private boolean canCreateRequestReview(boolean multipleReviewsEnabled, int numberOfReviewRequests, int maxReviewRequests) {
-        return numberOfReviewRequests==0 || (multipleReviewsEnabled && (maxReviewRequests<=0 || numberOfReviewRequests<=maxReviewRequests));
+        return numberOfReviewRequests == 0 || (multipleReviewsEnabled && (maxReviewRequests <= 0 || numberOfReviewRequests < maxReviewRequests));
     }
 
 }

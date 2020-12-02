@@ -13,10 +13,10 @@ public class ReviewRequestWrapper extends Request {
 
     public ReviewRequestWrapper(final Request request, final Node requestNode) throws RepositoryException {
         super(
-            request.getId(),
-            request.getSchedule(),
-            "review-" + requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE).getString(),
-            Collections.singletonMap("infoRequest", request.getInfo())
+                request.getId(),
+                request.getSchedule(),
+                "review-" + requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE).getString(),
+                Collections.singletonMap("infoRequest", request.getInfo())
         );
         this.requestNode = requestNode;
     }

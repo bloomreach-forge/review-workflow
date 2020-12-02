@@ -8,7 +8,6 @@ public class RequestReviewAction extends AbstractDocumentTaskAction<RequestRevie
 
     private static final long serialVersionUID = 1L;
 
-
     public String getContextVariantExpr() {
         return getParameter("contextVariantExpr");
     }
