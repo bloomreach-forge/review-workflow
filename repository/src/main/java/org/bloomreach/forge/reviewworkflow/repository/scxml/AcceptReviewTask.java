@@ -1,7 +1,7 @@
 package org.bloomreach.forge.reviewworkflow.repository.scxml;
 
 import org.apache.commons.lang.StringUtils;
-import org.bloomreach.forge.reviewworkflow.repository.documentworkflow.ReviewWorkflowNodeType;
+import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.repository.documentworkflow.Request;
 import org.onehippo.repository.documentworkflow.task.AbstractDocumentTask;

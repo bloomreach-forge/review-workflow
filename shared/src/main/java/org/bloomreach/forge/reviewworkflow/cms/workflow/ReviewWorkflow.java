@@ -35,7 +35,7 @@ public interface ReviewWorkflow extends DocumentWorkflow {
      *
      * @throws WorkflowException
      */
-    void acceptReview() throws WorkflowException;
+    void acceptReview(String id) throws WorkflowException;
 
     /**
      * Reject a review request plus give reason to author why.
@@ -43,21 +43,21 @@ public interface ReviewWorkflow extends DocumentWorkflow {
      * @param reason
      * @throws WorkflowException
      */
-    void rejectReview(String reason) throws WorkflowException;
+    void rejectReview(String id, String reason) throws WorkflowException;
 
     /**
      * Cancel the reivew request the user just made
      *
      * @throws WorkflowException
      */
-    void cancelReview() throws WorkflowException;
+    void cancelReview(String id) throws WorkflowException;
 
     /**
      * Reject a review request
      *
      * @throws WorkflowException
      */
-    void dropReview() throws WorkflowException;
+    void dropReview(String id) throws WorkflowException;
 
     boolean isEligibleForReview(String id) throws WorkflowException;
 

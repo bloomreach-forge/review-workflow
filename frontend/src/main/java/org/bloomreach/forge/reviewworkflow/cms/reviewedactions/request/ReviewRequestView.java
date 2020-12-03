@@ -5,6 +5,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 import org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model.ReviewRequestModel;
+import org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model.ReviewRequestWrapper;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.WorkflowDescriptorModel;
 import org.hippoecm.frontend.plugin.IPluginContext;
@@ -77,6 +78,11 @@ public class ReviewRequestView extends RequestsView {
                 final Request request = item.getModelObject();
                 Date schedule = request.getSchedule();
                 String state = request.getState();
+
+                if(request instanceof ReviewRequestWrapper) {
+                    ReviewRequestWrapper reviewRequestWrapper = (ReviewRequestWrapper)request;
+                    return new StringResourceModel("state-"+state, this, Model.of(reviewRequestWrapper));
+                }
 
                 final String parameter = schedule != null ?
                         DateTimePrinter.of(schedule).appendDST().print(FormatStyle.FULL) : "??";

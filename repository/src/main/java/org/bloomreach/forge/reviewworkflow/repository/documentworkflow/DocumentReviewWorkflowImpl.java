@@ -37,27 +37,33 @@ public class DocumentReviewWorkflowImpl extends DocumentWorkflowImpl implements 
     }
 
     @Override
-    public void acceptReview() throws WorkflowException {
+    public void acceptReview(final String id) throws WorkflowException {
         final DocumentWorkflowAction dfa = new DocumentWorkflowAction("acceptReview");
+        if(id != null) {
+            dfa.requestIdentifier(id);
+        }
         triggerAction(dfa);
     }
 
     @Override
-    public void rejectReview(String reason) throws WorkflowException {
+    public void rejectReview(final String id, final String reason) throws WorkflowException {
         final DocumentWorkflowAction dfa = new DocumentWorkflowAction("rejectReview");
+        if (id != null) {
+            dfa.requestIdentifier(id);
+        }
         dfa.addEventPayload("reason", reason);
         triggerAction(dfa);
     }
 
     @Override
-    public void cancelReview() throws WorkflowException {
-        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("cancelReview");
+    public void cancelReview(final String id) throws WorkflowException {
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("cancelReview").requestIdentifier(id);
         triggerAction(dfa);
     }
 
     @Override
-    public void dropReview() throws WorkflowException {
-        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("dropReview");
+    public void dropReview(final String id) throws WorkflowException {
+        final DocumentWorkflowAction dfa = new DocumentWorkflowAction("dropReview").requestIdentifier(id);
         triggerAction(dfa);
     }
 

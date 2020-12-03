@@ -24,15 +24,11 @@ public class OnlineRequestDialog extends AbstractAssignDialog {
     @Override
     protected IModel<? extends List<? extends String>> getDropDownModel(final IModel<Node> nodeModel, final ValueList valueList) throws RepositoryException {
         ArrayList<String> list = new ArrayList<>();
-
-        final ListIterator<ListItem> listItemListIterator = valueList.listIterator();
-
-        while (listItemListIterator.hasNext()) {
-            final ListItem next = listItemListIterator.next();
+        for (ListItem next : valueList) {
             if (!next.getKey().equals(nodeModel.getObject().getSession().getUserID())) {
                 list.add(next.getKey());
             }
         }
-        return new Model(list);
+        return Model.ofList(list);
     }
 }

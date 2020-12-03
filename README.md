@@ -143,6 +143,22 @@ Next, move to demo folder and build/run it:
 
 ## Configure
 
+## Review Request Frontend Plugin
+
+See /hippo:configuration/hippo:workflows/default/handle/frontend:renderer/review
+
+| Setting  | Description  |
+|---|---|
+|requestReview.enabled   | Enable review request plugin button   | 
+|onlineRequestReview.enabled  | Enable optional online review request plugin button   | 
+|multipleReviewRequests.enabled   | Enable creating multiple review requests   | 
+|multipleReviewRequests.limit   | Max number of review requests that can be created by anyone in total   | 
+|acceptReview.enabled  | Enable accept a review  | 
+|cancelReview.enabled   | Enable canceling a review   | 
+|rejectReview.enabled  | Enable rejecting a  review  | 
+|dropReview.enabled | Enable dropping a review  | 
+|internal.assign.list.path| Value list that populates the assign dropdown. Will always be taken into account |
+ 
 ### For Online Review (Optional feature):
 
 For the online review to work there are several things necessary to set in place.

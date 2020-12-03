@@ -86,8 +86,8 @@
         </property>
     </bean>
 
-    <bean id="org.bloomreach.forge.reviewworkflow.hst.ReviewWorkflowUtils"
-          class="org.bloomreach.forge.reviewworkflow.hst.ReviewWorkflowUtils">
+    <bean id="org.bloomreach.forge.reviewworkflow.hst.ReviewWorkflowActions"
+          class="org.bloomreach.forge.reviewworkflow.hst.ReviewWorkflowActions">
         <property name="reviewWorkflowCredentials" ref="javax.jcr.Credentials.reviewworkflowuser"/>
     </bean>
 

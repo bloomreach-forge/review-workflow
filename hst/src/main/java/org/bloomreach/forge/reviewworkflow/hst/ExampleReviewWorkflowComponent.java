@@ -23,12 +23,12 @@ public class ExampleReviewWorkflowComponent extends BaseHstComponent {
         request.setAttribute("isPreview", request.getRequestContext().isPreview());
         final String workflowId = getPublicRequestParameter(request, "workflowId");
         final HippoBean contentBean = request.getRequestContext().getContentBean();
-        ReviewWorkflowUtils reviewWorkflowUtils = HstServices.getComponentManager().getComponent(ReviewWorkflowUtils.class.getName(), "org.bloomreach.forge.reviewworkflow");
+        ReviewWorkflowActions reviewWorkflowActions = HstServices.getComponentManager().getComponent(ReviewWorkflowActions.class, "org.bloomreach.forge.reviewworkflow");
         boolean eligibleForReview = false;
         try {
-            eligibleForReview = reviewWorkflowUtils.isEligibleForReview(contentBean, workflowId);
+            eligibleForReview = reviewWorkflowActions.isEligibleForReview(contentBean, workflowId);
         } catch (RepositoryException ex) {
-            log.error(ex.getMessage());
+            log.error("Error checking if is eligible for review", ex);
         }
         request.setAttribute("eligibleForReview", eligibleForReview);
     }
@@ -38,13 +38,14 @@ public class ExampleReviewWorkflowComponent extends BaseHstComponent {
         super.doAction(request, response);
 
         try {
+            final String workflowId = getPublicRequestParameter(request, "workflowId");
             final String workflow = getEscapedParameter(request, "workflow");
             final String reason = getEscapedParameter(request, "reason");
             final HippoBean contentBean = request.getRequestContext().getContentBean();
-            final ReviewWorkflowUtils reviewWorkflowUtils = HstServices.getComponentManager().getComponent(ReviewWorkflowUtils.class.getName(), "org.bloomreach.forge.reviewworkflow");
-            reviewWorkflowUtils.execute(contentBean, "accept".equals(workflow) ? ReviewWorkflowUtils.Type.ACCEPT : ReviewWorkflowUtils.Type.REJECT, reason);
-        } catch (RepositoryException ex) {
-            log.error(ex.getMessage());
+            final ReviewWorkflowActions reviewWorkflowActions = HstServices.getComponentManager().getComponent(ReviewWorkflowActions.class, "org.bloomreach.forge.reviewworkflow");
+            reviewWorkflowActions.execute(workflowId, contentBean, "accept".equals(workflow) ? ReviewWorkflowActions.Type.ACCEPT : ReviewWorkflowActions.Type.REJECT, reason);
+        } catch (Exception ex) {
+            log.error("Error executing the accept/reject wf", ex);
         }
     }
 

@@ -9,15 +9,6 @@ public class IsEligibleForReviewAction extends AbstractDocumentTaskAction<IsEeli
     private static final long serialVersionUID = 1L;
 
     @SuppressWarnings("unused")
-    public void setRequestExpr(String requestExpr) {
-        setParameter("requestExpr", requestExpr);
-    }
-
-    public String getRequestExpr() {
-        return getParameter("requestExpr");
-    }
-
-    @SuppressWarnings("unused")
     public void setId(String id) {
         setParameter("id", id);
     }
@@ -34,7 +25,6 @@ public class IsEligibleForReviewAction extends AbstractDocumentTaskAction<IsEeli
     @Override
     protected void initTask(IsEeligibleForReviewTask task) throws ModelException, SCXMLExpressionException {
         super.initTask(task);
-        task.setRequest(eval(getRequestExpr()));
         task.setId(eval(getId()));
     }
 }
