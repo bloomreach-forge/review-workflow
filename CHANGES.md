@@ -1,5 +1,13 @@
 # Review/Assignment Workflow
 
+## 1.2.0
+HIPFORGE-384 Review Workflow Plugin - Allow multiple review requests
+* Limitations to address with this release:
+    * The plugin allows only one review request at a time. 
+    * The message on the yellow ribbon can include details about the user/group it's assigned to.
+    * The plugin is not extensible because all the wf actions are created in the constructor.
+    * Bugs and refactors
+
 ## 1.1.0
 
 * Fix a bug where wicket session id was being used instead of jcr session
