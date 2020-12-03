@@ -47,6 +47,6 @@ public class InternalAssignDialog extends AbstractAssignDialog {
             final Iterable<Group> allGroups = securityService.getGroups(0, GROUPS_LIMIT);
             allGroups.forEach(group -> groupsSet.add(group.getId()));
         }
-        return new Model(new LinkedList<>(groupsSet));
+        return Model.ofList(new LinkedList<>(groupsSet));
     }
 }
