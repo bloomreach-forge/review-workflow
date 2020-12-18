@@ -132,9 +132,9 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                     Node unpublished = getVariant(handle, WorkflowUtils.Variant.UNPUBLISHED);
                     final IModel<String> titleModel = new StringResourceModel("assign-to-title", ReviewRequestsWorkflowPlugin.this, getDocumentName());
                     return new InternalAssignDialog(this, new JcrNodeModel(unpublished),
-                            PropertyModel.of(this, "user"), titleModel, getEditorManager(), internalAssignListLocation);
+                           PropertyModel.of(this, "user"), titleModel, internalAssignListLocation);
                 } catch (RepositoryException e) {
-                    log.error(e.getMessage());
+                    log.error("Cannot create request dialog", e);
                 }
                 return null;
             }
@@ -165,9 +165,9 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                     Node unpublished = getVariant(handle, WorkflowUtils.Variant.UNPUBLISHED);
                     final IModel<String> titleModel = new StringResourceModel("email-to", ReviewRequestsWorkflowPlugin.this, getDocumentName());
                     return new OnlineRequestDialog(this, new JcrNodeModel(unpublished),
-                            PropertyModel.of(this, "user"), titleModel, getEditorManager(), onlineRequestListLocation);
+                            PropertyModel.of(this, "user"), titleModel, onlineRequestListLocation);
                 } catch (RepositoryException e) {
-                    log.error(e.getMessage());
+                    log.error("cannot create request dialog", e);
                 }
                 return null;
             }
@@ -278,7 +278,6 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
     }
 
     protected void createDropReview(final ReviewRequestWrapper request) {
-
         add(new StdWorkflow("dropReview" + request.getId(), new StringResourceModel("show-reject", this, Model.of(request)), getPluginContext(), getModel()) {
 
             @Override
@@ -387,5 +386,4 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
     private boolean canCreateRequestReview(boolean multipleReviewsEnabled, int numberOfReviewRequests, int maxReviewRequests) {
         return numberOfReviewRequests == 0 || (multipleReviewsEnabled && (maxReviewRequests <= 0 || numberOfReviewRequests < maxReviewRequests));
     }
-
 }

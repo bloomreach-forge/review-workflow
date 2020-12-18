@@ -1,18 +1,11 @@
 package org.bloomreach.forge.reviewworkflow.cms.reviewedactions;
 
-import org.apache.wicket.markup.head.CssHeaderItem;
-import org.apache.wicket.markup.head.IHeaderResponse;
-import org.apache.wicket.markup.head.JavaScriptHeaderItem;
-import org.apache.wicket.markup.head.OnDomReadyHeaderItem;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
-import org.apache.wicket.request.resource.CssResourceReference;
-import org.apache.wicket.request.resource.JavaScriptResourceReference;
 import org.hippoecm.addon.workflow.IWorkflowInvoker;
 import org.hippoecm.addon.workflow.WorkflowDialog;
 import org.hippoecm.frontend.dialog.DialogConstants;
-import org.hippoecm.frontend.service.IEditorManager;
 import org.hippoecm.frontend.session.UserSession;
 import org.hippoecm.repository.api.HippoNodeType;
 import org.hippoecm.repository.translation.HippoTranslationNodeType;
@@ -33,47 +26,32 @@ public abstract class AbstractAssignDialog extends WorkflowDialog<Node> {
 
     public AbstractAssignDialog(final IWorkflowInvoker invoker, final IModel<Node> nodeModel,
                                 final IModel<String> assignToModel, final IModel<String> titleModel,
-                                final IEditorManager editorMgr, final String valueListLocation) {
+                                final String valueListLocation) {
         super(invoker, nodeModel, titleModel);
-        final ValueList valueList = getValueList(valueListLocation);
 
-        if (valueList != null) {
-            DropDownChoice dropDownChoice = null;
-            try {
-                dropDownChoice = new DropDownChoice<>(
-                        "dropdown", assignToModel, getDropDownModel(nodeModel, valueList), new ChoiceRenderer<String>() {
-
-                    @Override
-                    public Object getDisplayValue(final String object) {
-                        if (valueList.contains(object)) {
-                            return valueList.getLabel(object);
+        try {
+            final ValueList valueList = getValueList(valueListLocation);
+            IModel<? extends List<String>> choices = getDropDownModel(nodeModel, valueList);
+            add(new DropDownChoice<String>("dropdown")
+                    .setChoices(choices)
+                    .setChoiceRenderer(
+                    new ChoiceRenderer<String>() {
+                        @Override
+                        public Object getDisplayValue(final String object) {
+                            ListItem listItem = valueList.getListItemByKey(object);
+                            return listItem != null ? listItem.getLabel() : object;
                         }
-                        return object;
-                    }
+                    }).setDefaultModel(assignToModel));
 
-                    @Override
-                    public String getIdValue(final String object, final int index) {
-                        if (valueList.contains(object)) {
-                            return valueList.getKey(object);
-                        }
-                        return object;
-                    }
-                });
-                add(dropDownChoice);
-            } catch (Exception e) {
-                LOG.warn("unable to populate dropdown", e);
-            }
-        } else {
-            LOG.warn("not a valid valuelist location: {}", valueListLocation);
+        } catch (Exception e) {
+            LOG.warn("unable to populate dropdown", e);
         }
 
-
-        setCssClass("hippo-workflow-dialog");
         setFocusOnCancel();
-        setSize(DialogConstants.SMALL_AUTO);
+        setSize(DialogConstants.MEDIUM_AUTO);
     }
 
-    protected abstract IModel<? extends List<? extends String>> getDropDownModel(final IModel<Node> nodeModel, final ValueList valueList) throws RepositoryException;
+    protected abstract IModel<? extends List<String>> getDropDownModel(final IModel<Node> nodeModel, final ValueList valueList) throws RepositoryException;
 
 
     public ValueList getValueList(String name) {
@@ -200,20 +178,5 @@ public abstract class AbstractAssignDialog extends WorkflowDialog<Node> {
         }
 
         return variant;
-    }
-
-
-    private static final CssResourceReference SELECT2_CSS = new CssResourceReference(AbstractAssignDialog.class, "select2.min.css");
-    private static final JavaScriptResourceReference SELECT2_JS = new JavaScriptResourceReference(AbstractAssignDialog.class, "select2.min.js");
-
-
-    @Override
-    public void renderHead(IHeaderResponse response) {
-        super.renderHead(response);
-        response.render(CssHeaderItem.forReference(SELECT2_CSS));
-        response.render(JavaScriptHeaderItem.forReference(SELECT2_JS));
-        response.render(OnDomReadyHeaderItem.forScript("$(document).ready(function() {\n" +
-                "  $(\".js-example-basic-single\").select2();\n" +
-                "});"));
     }
 }
