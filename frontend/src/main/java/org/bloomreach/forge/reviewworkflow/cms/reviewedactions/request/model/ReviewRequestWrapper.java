@@ -33,6 +33,10 @@ public class ReviewRequestWrapper extends Request {
         return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REVIEWEDBY).getString();
     }
 
+    public String getReason() throws RepositoryException {
+        return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString();
+    }
+
     @Override
     public Boolean getCancel() {
         return false;
