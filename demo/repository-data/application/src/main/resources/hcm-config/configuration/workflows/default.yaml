@@ -2,12 +2,5 @@ definitions:
   config:
     /hippo:configuration/hippo:workflows/default/handle/frontend:renderer/review:
       onlineRequestReview.enabled: true
-      acceptReview.enabled: true
-      cancelReview.enabled: true
-      dropReview.enabled: true
-      internal.assign.list.path: /content/documents/administration/review-workflow/internal-assign-list
-      online.request.list.path: /content/documents/administration/review-workflow/online-review-list
-      rejectReview.enabled: true
-      requestReview.enabled: true
       multipleReviewRequests.enabled: true
       multipleReviewRequests.limit: 2
