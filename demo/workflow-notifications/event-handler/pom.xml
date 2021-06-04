@@ -13,7 +13,7 @@
     <name>My Project event handler</name>
 
     <properties>
-        <httpclient.version>4.3.6</httpclient.version>
+        <httpclient.version>4.5.13</httpclient.version>
         <htmldiff.version>1.01.02</htmldiff.version>
         <cxf-rt-rs-client.version>3.3.6</cxf-rt-rs-client.version>
         <jackson-jaxrs-json-provider.version>2.10.1</jackson-jaxrs-json-provider.version>
