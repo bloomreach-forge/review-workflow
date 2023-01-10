@@ -8,13 +8,15 @@ The assigned group's members are the only ones that can accept or reject the req
 
 ## Release Notes
 
-| CMS        | Version  |
-|:----------:|:--------:|
-| 11.1       | 0.1.x    |
-|:----------:|:--------:|
-| 12.0       | 0.2.x    |
-|:----------:|:--------:|
-| 14.2.0       | 1.1.0    |
+|     CMS      |  Version   |
+|:------------:|:----------:|
+|     11.1     |   0.1.x    |
+| :----------: | :--------: |
+|     12.0     |   0.2.x    |
+| :----------: | :--------: |
+|    14.2.0    |   1.1.0    |
+| :----------: | :--------: |
+|    15.2.0    |   2.0.x    |
 
 See [CHANGES](CHANGES.md) for release notes.
 
