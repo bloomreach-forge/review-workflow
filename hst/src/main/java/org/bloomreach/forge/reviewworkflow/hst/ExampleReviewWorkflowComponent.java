@@ -1,6 +1,6 @@
 package org.bloomreach.forge.reviewworkflow.hst;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.text.StringEscapeUtils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -54,7 +54,7 @@ public class ExampleReviewWorkflowComponent extends BaseHstComponent {
         if (value == null || value.trim().length() == 0) {
             return null;
         }
-        return StringEscapeUtils.escapeHtml(value);
+        return StringEscapeUtils.escapeHtml3(value);
     }
 
 }
