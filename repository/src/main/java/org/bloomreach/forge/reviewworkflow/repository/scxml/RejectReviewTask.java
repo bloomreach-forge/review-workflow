@@ -1,11 +1,11 @@
 /*
- * Copyright 2014 Hippo B.V. (http://www.onehippo.com)
+ * Copyright 2024 Bloomreach (https://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- *         http://www.apache.org/licenses/LICENSE-2.0
+ *  http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -15,10 +15,10 @@
  */
 package org.bloomreach.forge.reviewworkflow.repository.scxml;
 
+import javax.jcr.RepositoryException;
+
 import org.bloomreach.forge.reviewworkflow.repository.documentworkflow.ReviewRequest;
 import org.onehippo.repository.documentworkflow.task.AbstractDocumentTask;
-
-import javax.jcr.RepositoryException;
 
 /**
  * Custom workflow task for rejecting a request

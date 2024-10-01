@@ -1,4 +1,29 @@
+/*
+ * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.bloomreach.forge.reviewworkflow.cms.reviewedactions;
+
+import java.util.List;
+import java.util.Locale;
+
+import javax.jcr.ItemNotFoundException;
+import javax.jcr.Node;
+import javax.jcr.NodeIterator;
+import javax.jcr.RepositoryException;
+import javax.jcr.Session;
+import javax.jcr.query.Query;
 
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -14,11 +39,6 @@ import org.onehippo.forge.selection.frontend.model.ListItem;
 import org.onehippo.forge.selection.frontend.model.ValueList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.jcr.*;
-import javax.jcr.query.Query;
-import java.util.List;
-import java.util.Locale;
 
 public abstract class AbstractAssignDialog extends WorkflowDialog<Node> {
 
@@ -65,7 +85,7 @@ public abstract class AbstractAssignDialog extends WorkflowDialog<Node> {
 
         final ValueList valuelist = new ValueList();
 
-        if ((name == null) || (name.equals(""))) {
+        if ((name == null) || (name.isEmpty())) {
             LOG.debug("No node name (uuid or path) configured, returning empty value list");
         } else {
             Node sourceNode = getSourceNode(name);
