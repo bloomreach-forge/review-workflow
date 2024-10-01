@@ -1,69 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
-         xmlns="http://maven.apache.org/POM/4.0.0"
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-    <modelVersion>4.0.0</modelVersion>
-    <parent>
-        <groupId>org.example</groupId>
-        <artifactId>myproject</artifactId>
-        <version>1.2.2-SNAPSHOT</version>
-    </parent>
-    <artifactId>myproject-cms-dependencies</artifactId>
-    <packaging>pom</packaging>
-    <name>My Project CMS Dependencies</name>
-    <description>My Project CMS Dependencies</description>
-    <dependencies>
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <groupId>org.example</groupId>
+    <artifactId>myproject</artifactId>
+    <version>1.2.2-SNAPSHOT</version>
+  </parent>
+  <artifactId>myproject-cms-dependencies</artifactId>
+  <packaging>pom</packaging>
+  <name>My Project CMS Dependencies</name>
+  <description>My Project CMS Dependencies</description>
+  <dependencies>
 
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>myproject-workflow-notifications-email-addon</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>myproject-workflow-notifications-event-handler</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>myproject-workflow-notifications-email-addon</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>myproject-workflow-notifications-event-handler</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.bloomreach.forge.review-workflow</groupId>
-            <artifactId>review-workflow-frontend</artifactId>
-            <version>${review-workflow.version}</version>
-        </dependency>
+    <dependency>
+      <groupId>org.bloomreach.forge.review-workflow</groupId>
+      <artifactId>review-workflow-frontend</artifactId>
+      <version>${review-workflow.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.bloomreach.forge.review-workflow</groupId>
-            <artifactId>review-workflow-repository</artifactId>
-            <version>${review-workflow.version}</version>
-        </dependency>
+    <dependency>
+      <groupId>org.bloomreach.forge.review-workflow</groupId>
+      <artifactId>review-workflow-repository</artifactId>
+      <version>${review-workflow.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.example</groupId>
-            <artifactId>myproject-repository-data-application</artifactId>
-            <version>${project.version}</version>
-        </dependency>
+    <dependency>
+      <groupId>org.example</groupId>
+      <artifactId>myproject-repository-data-application</artifactId>
+      <version>${project.version}</version>
+    </dependency>
 
-        <dependency>
-            <groupId>org.onehippo.cms7</groupId>
-            <artifactId>hippo-package-cms-dependencies</artifactId>
-            <type>pom</type>
-        </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-package-cms-dependencies</artifactId>
+      <type>pom</type>
+    </dependency>
 
-        <dependency>
-            <groupId>org.onehippo.cms7</groupId>
-            <artifactId>hippo-plugin-gallerypicker</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.onehippo.cms7</groupId>
-            <artifactId>hippo-plugin-resourcebundle-editor</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.onehippo.cms7</groupId>
-            <artifactId>hippo-plugin-selections-addon-cms</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.onehippo.cms7</groupId>
-            <artifactId>hippo-plugin-selections-addon-repository</artifactId>
-        </dependency>
-    </dependencies>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-plugin-gallerypicker</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-plugin-resourcebundle-editor</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-plugin-selections-addon-cms</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.onehippo.cms7</groupId>
+      <artifactId>hippo-plugin-selections-addon-repository</artifactId>
+    </dependency>
+  </dependencies>
 </project>

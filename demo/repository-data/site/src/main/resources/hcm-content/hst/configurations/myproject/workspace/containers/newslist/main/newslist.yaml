@@ -3,7 +3,7 @@
   hst:componentclassname: org.onehippo.cms7.essentials.components.EssentialsNewsComponent
   hst:label: News List
   hst:parameternames: [hidePastEvents, documentTypes, sortField, sortOrder, includeSubtypes,
-                       showPagination, path, pageSize, documentDateField, hideFutureItems]
+    showPagination, path, pageSize, documentDateField, hideFutureItems]
   hst:parametervalues: ['on', 'myproject:newsdocument', '', desc, 'off', 'on', '',
-                        '10', 'myproject:date', 'on']
+    '10', 'myproject:date', 'on']
   hst:template: newslist-main-newslist
