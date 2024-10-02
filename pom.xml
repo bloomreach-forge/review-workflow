@@ -5,8 +5,8 @@
 
     <parent>
         <groupId>org.onehippo.cms7</groupId>
-        <artifactId>hippo-cms7-project</artifactId>
-        <version>31.2.0</version>
+        <artifactId>hippo-cms7-release</artifactId>
+        <version>16.0.0</version>
     </parent>
 
     <name>brXM Review Workflow Addon</name>
@@ -41,10 +41,10 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <hippo.repository.version>14.2.0</hippo.repository.version>
-        <hippo.hst.version>14.2.0</hippo.hst.version>
-        <hippo.cms.version>14.2.0</hippo.cms.version>
-        <hippo.plugin.selections.version>14.2.0</hippo.plugin.selections.version>
+<!--        <hippo.repository.version>14.2.0</hippo.repository.version>-->
+<!--        <hippo.hst.version>14.2.0</hippo.hst.version>-->
+<!--        <hippo.cms.version>14.2.0</hippo.cms.version>-->
+<!--        <hippo.plugin.selections.version>14.2.0</hippo.plugin.selections.version>-->
     </properties>
 
     <licenses>
@@ -57,22 +57,22 @@
 
     <repositories>
         <repository>
-            <id>hippo</id>
-            <name>Hippo maven 2 repository.</name>
-            <url>http://maven.onehippo.com/maven2/</url>
+            <id>bloomreach-maven2</id>
+            <name>Bloomreach Maven 2</name>
+            <url>https://maven.bloomreach.com/repository/maven2</url>
         </repository>
         <repository>
-            <id>hippo-maven2-enterprise</id>
-            <name>Hippo Maven 2 Enterprise</name>
-            <url>https://maven.onehippo.com/maven2-enterprise/</url>
+            <id>bloomreach-maven2-enterprise</id>
+            <name>Bloomreach Maven 2 Enterprise</name>
+            <url>https://maven.bloomreach.com/repository/maven2-enterprise/</url>
             <releases>
                 <updatePolicy>never</updatePolicy>
             </releases>
         </repository>
         <repository>
-            <id>hippo-forge</id>
-            <name>Hippo Forge Maven 2 repository.</name>
-            <url>https://maven.onehippo.com/maven2-forge/</url>
+            <id>blooreach-maven2-forge</id>
+            <name>Blooreach Maven 2 Forge Repositories</name>
+            <url>https://maven.bloomreach.com/repository/maven2-forge</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -92,15 +92,15 @@
 
     <distributionManagement>
         <repository>
-            <name>Hippo Maven 2 Forge Repository</name>
-            <id>hippo-maven2-forge</id>
-            <url>https://maven.onehippo.com/content/repositories/forge-releases/</url>
+            <name>Bloomreach Maven 2 Forge Repository</name>
+            <id>bloomreach-maven2-forge</id>
+            <url>https://maven.bloomreach.com/content/repositories/forge-releases/</url>
             <uniqueVersion>false</uniqueVersion>
         </repository>
     </distributionManagement>
 
     <issueManagement>
-        <url>https://issues.onehippo.com/browse/HIPFORGE</url>
+        <url>https://issues.onehippo.com/browse/FORGE</url>
     </issueManagement>
 
     <organization>

@@ -1,7 +1,10 @@
 # Review/Assignment Workflow
-
+## 2.0.0
+FORGE-538 - Upgrade to v16
+## 1.2.1
+FORGE-385 Review Workflow Plugin - Make "Asssign to" dialog extensible
 ## 1.2.0
-HIPFORGE-384 Review Workflow Plugin - Allow multiple review requests
+FORGE-384 Review Workflow Plugin - Allow multiple review requests
 * Limitations to address with this release:
     * The plugin allows only one review request at a time. 
     * The message on the yellow ribbon can include details about the user/group it's assigned to.

@@ -16,14 +16,14 @@
     <packaging>pom</packaging>
 
     <properties>
-        <commons-email.version>1.5</commons-email.version>
+<!--        <commons-email.version>1.5</commons-email.version>-->
     </properties>
 
     <repositories>
         <repository>
-            <id>hippo-maven2</id>
-            <name>Hippo Maven 2</name>
-            <url>http://maven.onehippo.com/maven2/</url>
+            <id>bloomreach-maven2</id>
+            <name>Bloomreach Maven 2</name>
+            <url>https://maven.bloomreach.com/repository/maven2/</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>

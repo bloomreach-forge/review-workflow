@@ -1,46 +1,46 @@
 /content/documents/myproject/news:
   jcr:primaryType: hippostd:folder
   jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-  jcr:uuid: 28d5762f-29a8-4ae6-b8c9-c82a2d422b53
+  jcr:uuid: 23a7a478-6cd3-490b-930f-21ff635524c0
   hippostd:foldertype: [new-news-document, new-news-folder]
-  hippotranslation:id: f927ab2a-a2bc-4525-88ae-de019d1d394b
+  hippotranslation:id: a31be0af-b108-42e9-8f93-b7888fca3db1
   hippotranslation:locale: en
-  /2020:
+  /2024:
     jcr:primaryType: hippostd:folder
     jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-    jcr:uuid: a644f2db-ce30-4cf4-be01-0165c8316b2d
+    jcr:uuid: b60b8acf-5b81-46f9-a24d-8df778fe41ec
     hippostd:foldertype: [new-news-document, new-news-folder]
-    hippotranslation:id: fe00c4a6-3b3f-4341-a0f8-1a4fe7af364a
+    hippotranslation:id: 9ea88c08-08d0-4085-8491-5160ea3008cf
     hippotranslation:locale: en
-    /06:
+    /09:
       jcr:primaryType: hippostd:folder
       jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-      jcr:uuid: 1e765c73-4441-4bd6-a81f-f27a90fc0ec3
+      jcr:uuid: 7c6ed2fb-53bd-4f7f-b033-3259341df382
       hippostd:foldertype: [new-news-document, new-news-folder]
-      hippotranslation:id: 25172b91-c0b0-4c32-94c3-4798f835cf76
+      hippotranslation:id: 07b4afef-f76d-4d33-ace0-63f8165f738f
       hippotranslation:locale: en
       /the-medusa-news:
         jcr:primaryType: hippo:handle
         jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
         jcr:uuid: c580ac64-3874-4717-a6d9-e5ad72080abe
         hippo:name: The medusa news
-        hippo:versionHistory: 79f463bf-115d-4162-a70d-9413d2abd60d
+        hippo:versionHistory: 80633c55-733d-49c5-a57e-4121f7c75fa7
         /the-medusa-news[1]:
           jcr:primaryType: myproject:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 9fbd48ca-94dc-4517-9280-8503cdf41840
+          jcr:uuid: 6170aa06-5dee-49a2-8f48-4996cae4645c
           hippo:availability: [live]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T13:03:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T11:44:37.254+02:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T13:04:00+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-06T11:46:50.113+02:00
-          hippotranslation:id: 743e92ac-9c0d-43df-89f0-c4dda289f6c0
+          hippostdpubwf:publicationDate: 2013-11-12T13:04:00+01:00
+          hippotranslation:id: e7af0e4a-bf5a-472c-a48e-07d0bebf6270
           hippotranslation:locale: en
           myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
+          myproject:date: 2024-09-30T17:41:00+02:00
           myproject:documenttype: news
           myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -51,7 +51,7 @@
             mollit anim id est laborum
           myproject:location: Rotterdam
           myproject:source: ''
-          myproject:title: The medusa newsfdsafdsafdsa
+          myproject:title: The medusa news
           /myproject:content:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -90,17 +90,17 @@
         /the-medusa-news[2]:
           jcr:primaryType: myproject:newsdocument
           jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 1e474afb-b264-4cb1-844d-7c3a71c226ab
+          jcr:uuid: ee3f4b45-6a93-4d8d-b2d3-1d25e6517bbb
           hippo:availability: [preview]
           hippostd:state: unpublished
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T13:03:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T18:28:21.953+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-01T12:15:48.381+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 743e92ac-9c0d-43df-89f0-c4dda289f6c0
+          hippotranslation:id: e7af0e4a-bf5a-472c-a48e-07d0bebf6270
           hippotranslation:locale: en
           myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
+          myproject:date: 2024-09-30T17:41:00+02:00
           myproject:documenttype: news
           myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -111,7 +111,7 @@
             mollit anim id est laborum
           myproject:location: Rotterdam
           myproject:source: ''
-          myproject:title: The medusa news UNDER REVIEW
+          myproject:title: The medusa news change
           /myproject:content:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -150,17 +150,17 @@
         /the-medusa-news[3]:
           jcr:primaryType: myproject:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: c10087b5-d040-4a29-97b6-1a1a35132f51
+          jcr:uuid: baa297af-668a-4fa9-bc0e-ff6a571aa997
           hippo:availability: []
           hippostd:state: draft
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T13:03:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T18:28:15.375+02:00
+          hippostdpubwf:lastModificationDate: 2024-10-01T12:15:45.422+02:00
           hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: 743e92ac-9c0d-43df-89f0-c4dda289f6c0
+          hippotranslation:id: e7af0e4a-bf5a-472c-a48e-07d0bebf6270
           hippotranslation:locale: en
           myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
+          myproject:date: 2024-09-30T17:41:00+02:00
           myproject:documenttype: news
           myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -171,7 +171,7 @@
             mollit anim id est laborum
           myproject:location: Rotterdam
           myproject:source: ''
-          myproject:title: The medusa news UNDER REVIEW
+          myproject:title: The medusa news change
           /myproject:content:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -207,41 +207,27 @@
             hippo:facets: []
             hippo:modes: []
             hippo:values: []
-        /hippo:request:
-          jcr:primaryType: reviewworkflow:request
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 66162b6f-3e7e-4dc2-8a0f-324e7d2ca8f8
-          reviewworkflow:assignto: admin
-          reviewworkflow:checked: false
-          reviewworkflow:creationdate: 2020-06-17T15:16:30.910+02:00
-          reviewworkflow:document:
-            type: reference
-            path: 2020/06/the-medusa-news/the-medusa-news[2]
-          reviewworkflow:owner: author
-          reviewworkflow:state: request
-          reviewworkflow:uuid: 491ed0db-85a3-4391-8359-e02c89fc7778
       /2013-harvest:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
         jcr:uuid: 30092f4e-2ef7-4c72-86a5-8ce895908937
         hippo:name: 2013 harvest
-        hippo:versionHistory: 03cc2240-ac14-4c83-ba12-2523a9614a72
-        /2013-harvest[1]:
+        /2013-harvest:
           jcr:primaryType: myproject:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 584d5b29-67a0-4995-abe0-257dc27cbec1
-          hippo:availability: [live]
+          jcr:uuid: ca144161-2563-4331-aa76-3400a46fad38
+          hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T14:31:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-05T17:36:31.917+02:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T14:31:00+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-06T11:47:02.333+02:00
-          hippotranslation:id: e116421c-0d8e-4ffb-a390-00a76bcec88c
+          hippostdpubwf:publicationDate: 2013-11-12T14:31:00+01:00
+          hippotranslation:id: f7c862b3-f63f-4894-a5dd-72e62de6a4eb
           hippotranslation:locale: en
           myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
+          myproject:date: 2024-09-30T17:41:00+02:00
           myproject:documenttype: news
           myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -252,127 +238,7 @@
             mollit anim id est laborum
           myproject:location: Rome
           myproject:source: ''
-          myproject:title: 2013 harvests
-          /myproject:content:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <html>
-                        <body>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        </body>
-                        </html>
-          /myproject:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: beff458e-e07a-4065-8cad-8d96b67d13ec
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /2013-harvest[2]:
-          jcr:primaryType: myproject:newsdocument
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: 096ce234-b451-499b-992f-45ec94ddb79e
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2013-11-12T14:31:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-05T17:36:31.917+02:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: e116421c-0d8e-4ffb-a390-00a76bcec88c
-          hippotranslation:locale: en
-          myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
-          myproject:documenttype: news
-          myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum
-          myproject:location: Rome
-          myproject:source: ''
-          myproject:title: 2013 harvests
-          /myproject:content:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <html>
-                        <body>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        </body>
-                        </html>
-          /myproject:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: beff458e-e07a-4065-8cad-8d96b67d13ec
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /2013-harvest[3]:
-          jcr:primaryType: myproject:newsdocument
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 95d6c7c3-13a9-403e-b141-da81788b62fb
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2013-11-12T14:31:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-05T17:36:26.578+02:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: e116421c-0d8e-4ffb-a390-00a76bcec88c
-          hippotranslation:locale: en
-          myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
-          myproject:documenttype: news
-          myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum
-          myproject:location: Rome
-          myproject:source: ''
-          myproject:title: 2013 harvests
+          myproject:title: 2013 harvest
           /myproject:content:
             jcr:primaryType: hippostd:html
             hippostd:content: |-
@@ -410,26 +276,25 @@
             hippo:values: []
       /the-gastropoda-news:
         jcr:primaryType: hippo:handle
-        jcr:mixinTypes: ['hippo:named', 'hippo:versionInfo', 'mix:referenceable']
+        jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
         jcr:uuid: aeda2bcd-b21d-4ead-a2e6-c64a2ca051c8
         hippo:name: The gastropoda news
-        hippo:versionHistory: 918952f7-f56d-4d3d-9b59-0b449c9292a1
-        /the-gastropoda-news[1]:
+        /the-gastropoda-news:
           jcr:primaryType: myproject:newsdocument
           jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: 6f6dc1c0-951c-46e0-b72e-cdbf687ee7ef
-          hippo:availability: [live]
+          jcr:uuid: e671924d-e369-4468-9d61-128c353ff437
+          hippo:availability: [live, preview]
           hippostd:holder: admin
           hippostd:state: published
           hippostdpubwf:createdBy: admin
           hippostdpubwf:creationDate: 2013-11-12T12:50:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T11:55:42.807+02:00
+          hippostdpubwf:lastModificationDate: 2013-11-12T12:52:00+01:00
           hippostdpubwf:lastModifiedBy: admin
-          hippostdpubwf:publicationDate: 2020-06-06T11:56:29.914+02:00
-          hippotranslation:id: b36a008d-d217-4fbe-a4df-f767370cd07f
+          hippostdpubwf:publicationDate: 2013-11-12T12:52:00+01:00
+          hippotranslation:id: 688281c7-a535-455e-a66a-b0b1d599caa3
           hippotranslation:locale: en
           myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
+          myproject:date: 2024-09-30T17:41:00+02:00
           myproject:documenttype: news
           myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
             elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -440,127 +305,7 @@
             mollit anim id est laborum
           myproject:location: Liverpool
           myproject:source: ''
-          myproject:title: The gastropoda newsfdsa
-          /myproject:content:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <html>
-                        <body>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        </body>
-                        </html>
-          /myproject:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 3c740fcf-8ec5-4f00-a713-ff96caa645c8
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /the-gastropoda-news[2]:
-          jcr:primaryType: myproject:newsdocument
-          jcr:mixinTypes: ['mix:referenceable', 'mix:versionable']
-          jcr:uuid: d464b31f-0e1c-4e0a-a583-97a30ea3cd9e
-          hippo:availability: [preview]
-          hippostd:state: unpublished
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2013-11-12T12:50:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T11:55:42.807+02:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: b36a008d-d217-4fbe-a4df-f767370cd07f
-          hippotranslation:locale: en
-          myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
-          myproject:documenttype: news
-          myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum
-          myproject:location: Liverpool
-          myproject:source: ''
-          myproject:title: The gastropoda newsfdsa
-          /myproject:content:
-            jcr:primaryType: hippostd:html
-            hippostd:content: |-
-              <html>
-                        <body>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-                        dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-                        sunt in culpa qui officia deserunt mollit anim id est laborum </p>
-
-                        </body>
-                        </html>
-          /myproject:image:
-            jcr:primaryType: hippogallerypicker:imagelink
-            hippo:docbase: 3c740fcf-8ec5-4f00-a713-ff96caa645c8
-            hippo:facets: []
-            hippo:modes: []
-            hippo:values: []
-        /the-gastropoda-news[3]:
-          jcr:primaryType: myproject:newsdocument
-          jcr:mixinTypes: ['mix:referenceable']
-          jcr:uuid: e6badbce-e98f-4513-995d-28414952805c
-          hippo:availability: []
-          hippostd:state: draft
-          hippostdpubwf:createdBy: admin
-          hippostdpubwf:creationDate: 2013-11-12T12:50:00+01:00
-          hippostdpubwf:lastModificationDate: 2020-06-06T11:55:39.259+02:00
-          hippostdpubwf:lastModifiedBy: admin
-          hippotranslation:id: b36a008d-d217-4fbe-a4df-f767370cd07f
-          hippotranslation:locale: en
-          myproject:author: Alfred Anonymous
-          myproject:date: 2020-06-05T12:22:00+02:00
-          myproject:documenttype: news
-          myproject:introduction: Lorem ipsum dolor sit amet, consectetur adipisicing
-            elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi
-            ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum
-          myproject:location: Liverpool
-          myproject:source: ''
-          myproject:title: The gastropoda newsfdsa
+          myproject:title: The gastropoda news
           /myproject:content:
             jcr:primaryType: hippostd:html
             hippostd:content: |-

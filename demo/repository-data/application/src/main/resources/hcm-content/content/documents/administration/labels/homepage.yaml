@@ -1,12 +1,12 @@
 /content/documents/administration/labels/homepage:
   jcr:primaryType: hippo:handle
   jcr:mixinTypes: ['hippo:named', 'mix:referenceable']
-  jcr:uuid: 2d5c8aed-1c91-427e-948e-243a52da1a84
+  jcr:uuid: d9dac416-7036-439b-bb3d-89ea6dca9937
   hippo:name: Homepage
   /homepage:
     jcr:primaryType: resourcebundle:resourcebundle
     jcr:mixinTypes: ['mix:referenceable']
-    jcr:uuid: 2cc4774c-baf6-4d1e-8c9a-079d7197f0e1
+    jcr:uuid: 193cd23d-b672-49ac-98ea-0037772b20f3
     hippo:availability: [live, preview]
     hippostd:state: published
     hippostdpubwf:createdBy: admin
@@ -15,7 +15,7 @@
     hippostdpubwf:lastModifiedBy: admin
     hippostdpubwf:publicationDate: 2014-08-21T17:11:55.239+02:00
     resourcebundle:descriptions: [Title displayed on homepage., Text displayed on
-                                                                  homepage.]
+        homepage.]
     resourcebundle:id: essentials.homepage
     resourcebundle:keys: [homepage.title, homepage.text]
     resourcebundle:messages: [Home Page, 'Every website comes with its own styling
