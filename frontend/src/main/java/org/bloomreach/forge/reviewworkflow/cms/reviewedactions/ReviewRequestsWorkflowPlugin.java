@@ -1,14 +1,39 @@
+/*
+ * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 package org.bloomreach.forge.reviewworkflow.cms.reviewedactions;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.UUID;
+
+import javax.jcr.Node;
+import javax.jcr.RepositoryException;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model.ReviewRequestModel;
 import org.bloomreach.forge.reviewworkflow.cms.reviewedactions.request.model.ReviewRequestWrapper;
 import org.bloomreach.forge.reviewworkflow.cms.workflow.ReviewWorkflow;
-import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.addon.workflow.ConfirmDialog;
 import org.hippoecm.addon.workflow.StdWorkflow;
 import org.hippoecm.addon.workflow.TextDialog;
@@ -27,11 +52,6 @@ import org.hippoecm.repository.api.Workflow;
 import org.hippoecm.repository.util.WorkflowUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.jcr.Node;
-import javax.jcr.RepositoryException;
-import java.io.Serializable;
-import java.util.*;
 
 /**
  * Workflow menu plugin for the Review Workflow
@@ -72,8 +92,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
                 for (Map.Entry<String, Map<String, ?>> entry : infoRequests.entrySet()) {
                     final ReviewRequestModel reviewRequestModel = new ReviewRequestModel(entry.getKey(), entry.getValue());
                     Request request = reviewRequestModel.getObject();
-                    if (request instanceof ReviewRequestWrapper) {
-                        ReviewRequestWrapper reviewRequest = (ReviewRequestWrapper) request;
+                    if (request instanceof final ReviewRequestWrapper reviewRequest) {
                         numberOfRequests++;
                         if (isStateReviewRejected(request) && dropReviewEnabled && isActionAllowed(info, "dropReview")) {
                             createDropReview(reviewRequest);
@@ -224,8 +243,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if (wf instanceof ReviewWorkflow) {
-                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                if (wf instanceof final ReviewWorkflow workflow) {
                     for (Request request : allReviewRequests) {
                         workflow.cancelReview(request.getId());
                     }
@@ -268,8 +286,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if (wf instanceof ReviewWorkflow) {
-                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                if (wf instanceof final ReviewWorkflow workflow) {
                     workflow.rejectReview(request.getId(), reason);
                 }
                 return null;
@@ -311,8 +328,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if (wf instanceof ReviewWorkflow) {
-                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                if (wf instanceof final ReviewWorkflow workflow) {
                     workflow.dropReview(request.getId());
                 }
                 return null;
@@ -345,8 +361,7 @@ public class ReviewRequestsWorkflowPlugin extends AbstractDocumentWorkflowPlugin
 
             @Override
             protected String execute(Workflow wf) throws Exception {
-                if (wf instanceof ReviewWorkflow) {
-                    ReviewWorkflow workflow = (ReviewWorkflow) wf;
+                if (wf instanceof final ReviewWorkflow workflow) {
                     workflow.acceptReview(request.getId());
                 }
                 return null;

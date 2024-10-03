@@ -5,11 +5,9 @@ definitions:
       hipposys:active: true
       hipposys:password:
         .meta:category: system
-        type: string
         value: editor
       hipposys:passwordlastmodified:
         .meta:category: system
       hipposys:previouspasswords:
         .meta:category: system
       hipposys:securityprovider: internal
-      hipposys:email: foo@bar.com

@@ -1,24 +1,21 @@
 package demo.hippo.notifications.util;
 
-import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
-import com.google.common.collect.ImmutableList;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
+
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
+
 import org.apache.cxf.configuration.jsse.TLSClientParameters;
 import org.apache.cxf.jaxrs.client.JAXRSClientFactory;
 import org.apache.cxf.jaxrs.client.WebClient;
 import org.apache.cxf.transport.http.HTTPConduit;
 import org.apache.cxf.transports.http.configuration.HTTPClientPolicy;
 
-import javax.net.ssl.TrustManager;
-import javax.net.ssl.X509TrustManager;
-import javax.security.cert.X509Certificate;
-import java.security.cert.CertificateException;
-
 public class PreviewClientUtil {
 
     public static PreviewClient getPreviewClient(final String base) {
-        PreviewClient client = JAXRSClientFactory.create(base,
-                PreviewClient.class,
-                ImmutableList.of(new JacksonJaxbJsonProvider()));
+        PreviewClient client = JAXRSClientFactory.create(base, PreviewClient.class);
         setSecureConduit(client);
         return client;
     }
@@ -55,7 +52,7 @@ public class PreviewClientUtil {
          * @param chain    the peer certificate chain.
          * @param authType the authentication type based on the client certificate.
          */
-        public void checkClientTrusted(X509Certificate[] chain, String authType) {
+        public void checkClientTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
 
         /**
@@ -64,18 +61,7 @@ public class PreviewClientUtil {
          * @param chain    the peer certificate chain.
          * @param authType the key exchange algorithm used.
          */
-        public void checkServerTrusted(X509Certificate[] chain, String authType) {
-        }
-
-
-        @Override
-        public void checkClientTrusted(final java.security.cert.X509Certificate[] x509Certificates, final String s) throws CertificateException {
-
-        }
-
-        @Override
-        public void checkServerTrusted(final java.security.cert.X509Certificate[] x509Certificates, final String s) throws CertificateException {
-
+        public void checkServerTrusted(X509Certificate[] chain, String authType) throws CertificateException {
         }
 
         @Override

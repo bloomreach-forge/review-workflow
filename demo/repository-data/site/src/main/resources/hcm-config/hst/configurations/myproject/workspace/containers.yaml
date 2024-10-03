@@ -7,11 +7,13 @@ definitions:
         /top:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: 46abe25a-cfcd-47bf-afbb-f445ec11dc06
           hst:label: Top
           hst:xtype: hst.vbox
         /footer:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: fd9f039f-3804-470b-bf3b-59579d1c7da1
           hst:label: Footer
           hst:xtype: hst.vbox
       /homepage:
@@ -19,6 +21,7 @@ definitions:
         /main:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: 7682233e-7f6c-4b3c-80d4-fd1c40baab90
           hst:label: Home Page Main
           hst:xtype: hst.vbox
       /pagenotfound:
@@ -26,6 +29,7 @@ definitions:
         /main:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: da8f0043-8d01-4450-8ad6-31de370f6d8c
           hst:label: Page-Not-Found Main
           hst:xtype: hst.vbox
       /newslist:
@@ -33,6 +37,7 @@ definitions:
         /main:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: 189dc34d-9441-4bcc-94ee-1a3d6ae79bf8
           hst:label: News List Main
           hst:xtype: hst.vbox
       /newspage:
@@ -40,5 +45,6 @@ definitions:
         /main:
           .meta:residual-child-node-category: content
           jcr:primaryType: hst:containercomponent
+          hippo:identifier: 772fbb4d-f5db-4926-bb51-59ccbe53af99
           hst:label: News Page Main
           hst:xtype: hst.vbox

@@ -5,7 +5,7 @@ definitions:
       jcr:mixinTypes: ['hipposys:implementation']
       hippostd:icon: addfolder_ico
       hippostd:modify: [./_name, $name, './hippotranslation:id', $uuid, './hippotranslation:locale',
-                        $inherited]
+        $inherited]
       hipposys:classname: org.hippoecm.repository.impl.query.DirectPath
       jcr:language: xpath
       jcr:statement: /jcr:root/hippo:configuration/hippo:queries/hippo:templates/new-news-folder/hippostd:templates/node()
@@ -14,7 +14,7 @@ definitions:
         /hippostd:folder:
           jcr:primaryType: hippostd:folder
           jcr:mixinTypes: ['hippotranslation:translated', 'mix:referenceable']
-          jcr:uuid: 97a55251-c42e-4fc8-8fad-2e79dd0b98dd
+          jcr:uuid: 919cd74d-3ca2-45e5-89c2-bda97d0f1c4e
           hippostd:foldertype: [new-news-document, new-news-folder]
           hippotranslation:id: generated id
           hippotranslation:locale: inherited locale

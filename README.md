@@ -8,13 +8,12 @@ The assigned group's members are the only ones that can accept or reject the req
 
 ## Release Notes
 
-| CMS        | Version  |
-|:----------:|:--------:|
-| 11.1       | 0.1.x    |
-|:----------:|:--------:|
-| 12.0       | 0.2.x    |
-|:----------:|:--------:|
-| 14.2.0       | 1.1.0    |
+| CMS  | Version |
+|------|---------|
+| 11.x | 0.1.2   |
+| 12.x | 0.2.x   |
+| 14.x | 1.2.1   |
+| 16.x | 2.0.0   |
 
 See [CHANGES](CHANGES.md) for release notes.
 
@@ -30,9 +29,9 @@ For release processes, see [Hippo Forge Release Process](https://onehippo-forge.
   <!-- SNIP -->
  
   <repository>
-    <id>hippo-maven2</id>
-    <name>Hippo Maven 2 Repository</name>
-    <url>https://maven.onehippo.com/maven2-forge//</url>
+    <id>bloomreach-maven2</id>
+    <name>Bloomreach Maven 2 Repository</name>
+    <url>https://maven.bloomreach.com/maven2-forge/</url>
   </repository>
  
   <!-- SNIP -->
@@ -192,7 +191,7 @@ Set ```/hippo:configuration/hippo:workflows/default/handle/frontend:renderer/rev
   hst:types: [rest]
 ```
 
-#### 4. There are 2 value list available in the administration/Review Worklfow folder. These are the assignment list which appears when you do a review request.
+#### 4. There are 2 value list available in the administration/Review Workflow folder. These are the assignment list which appears when you do a review request.
 
  * internal assign list:
 
