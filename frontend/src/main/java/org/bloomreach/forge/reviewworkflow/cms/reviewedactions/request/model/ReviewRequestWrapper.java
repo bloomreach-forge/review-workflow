@@ -30,9 +30,11 @@ public class ReviewRequestWrapper extends Request {
     public ReviewRequestWrapper(final Request request, final Node requestNode) throws RepositoryException {
         super(
                 request.getId(),
+                request.getCreated(),
+                request.getReason(),
                 request.getSchedule(),
                 "review-" + requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE).getString(),
-                Collections.singletonMap("infoRequest", request.getInfo())
+                Collections.singletonMap(Request.INFO_REQUEST, request.getInfo())
         );
         this.requestNode = requestNode;
     }
@@ -49,8 +51,13 @@ public class ReviewRequestWrapper extends Request {
         return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REVIEWEDBY).getString();
     }
 
-    public String getReason() throws RepositoryException {
-        return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString();
+    @Override
+    public String getReason() {
+        try {
+            return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString();
+        } catch (RepositoryException e) {
+            return null;
+        }
     }
 
     @Override

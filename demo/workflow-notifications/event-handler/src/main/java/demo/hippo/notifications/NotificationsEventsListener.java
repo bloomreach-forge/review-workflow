@@ -1,7 +1,7 @@
 package demo.hippo.notifications;
 
 import demo.hippo.notifications.util.HippoUtils;
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.onehippo.cms7.event.HippoEventConstants;
 import org.onehippo.cms7.services.HippoServiceRegistry;
 import org.onehippo.cms7.services.eventbus.HippoEventListenerRegistry;
