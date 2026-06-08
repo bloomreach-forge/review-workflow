@@ -41,10 +41,6 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-<!--        <hippo.repository.version>14.2.0</hippo.repository.version>-->
-<!--        <hippo.hst.version>14.2.0</hippo.hst.version>-->
-<!--        <hippo.cms.version>14.2.0</hippo.cms.version>-->
-<!--        <hippo.plugin.selections.version>14.2.0</hippo.plugin.selections.version>-->
     </properties>
 
     <licenses>
@@ -100,7 +96,7 @@
     </distributionManagement>
 
     <issueManagement>
-        <url>https://issues.onehippo.com/browse/FORGE</url>
+        <url>https://bloomreach.atlassian.net/browse/FORGE</url>
     </issueManagement>
 
     <organization>

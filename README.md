@@ -14,6 +14,7 @@ The assigned group's members are the only ones that can accept or reject the req
 | 12.x | 0.2.x   |
 | 14.x | 1.2.1   |
 | 16.x | 2.0.0   |
+| 17.x | 3.0.0   |
 
 See [CHANGES](CHANGES.md) for release notes.
 

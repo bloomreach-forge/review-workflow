@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ * Copyright 2026 Bloomreach (https://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -49,15 +49,6 @@ public class ReviewRequestWrapper extends Request {
 
     public String getReviewedBy() throws RepositoryException {
         return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REVIEWEDBY).getString();
-    }
-
-    @Override
-    public String getReason() {
-        try {
-            return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString();
-        } catch (RepositoryException e) {
-            return null;
-        }
     }
 
     @Override
