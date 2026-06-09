@@ -54,7 +54,11 @@ public class ReviewRequest extends Request {
         setStringProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_UUID, UUID.randomUUID().toString());
         setBooleanProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_CHECKED, false);
         setStringProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE, "request");
-        setDateProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_CREATIONDATE, Calendar.getInstance().getTime());
+        final Calendar creationDate = Calendar.getInstance();
+        setDateProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_CREATIONDATE, creationDate.getTime());
+        setDateProperty(HippoStdPubWfNodeType.HIPPOSTDPUBWF_CREATION_DATE, creationDate.getTime());
+        setStringProperty(HippoStdPubWfNodeType.HIPPOSTDPUBWF_TYPE, "requestReview");
+        setStringProperty(HippoStdPubWfNodeType.HIPPOSTDPUBWF_USERNAME, owner);
         if (document != null) {
             getCheckedOutNode().setProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_DOCUMENT, document.getNode());
         }
