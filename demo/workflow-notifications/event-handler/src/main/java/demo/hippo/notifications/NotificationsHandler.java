@@ -7,7 +7,7 @@ import demo.hippo.notifications.util.HippoUtils;
 import demo.hippo.notifications.util.HtmlDiffGenerator;
 import demo.hippo.notifications.util.PreviewClient;
 import demo.hippo.notifications.util.PreviewClientUtil;
-import org.apache.commons.mail.EmailException;
+import org.apache.commons.mail2.core.EmailException;
 import org.onehippo.cms7.services.HippoServiceRegistry;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

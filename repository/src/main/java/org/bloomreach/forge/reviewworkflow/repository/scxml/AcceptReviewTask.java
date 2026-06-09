@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ * Copyright 2026 Bloomreach (https://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@ import javax.jcr.Node;
 import javax.jcr.RepositoryException;
 import javax.jcr.Session;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.bloomreach.forge.reviewworkflow.ReviewWorkflowNodeType;
 import org.hippoecm.repository.util.JcrUtils;
 import org.onehippo.repository.documentworkflow.Request;

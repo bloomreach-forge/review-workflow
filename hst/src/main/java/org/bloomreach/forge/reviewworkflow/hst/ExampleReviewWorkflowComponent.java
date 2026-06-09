@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ * Copyright 2026 Bloomreach (https://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package org.bloomreach.forge.reviewworkflow.hst;
 
 import javax.jcr.RepositoryException;
 
-import org.apache.commons.lang.StringEscapeUtils;
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.hippoecm.hst.component.support.bean.BaseHstComponent;
 import org.hippoecm.hst.content.beans.standard.HippoBean;
 import org.hippoecm.hst.core.component.HstComponentException;
@@ -69,7 +69,7 @@ public class ExampleReviewWorkflowComponent extends BaseHstComponent {
         if (value == null || value.trim().isEmpty()) {
             return null;
         }
-        return StringEscapeUtils.escapeHtml(value);
+        return StringEscapeUtils.escapeHtml4(value);
     }
 
 }

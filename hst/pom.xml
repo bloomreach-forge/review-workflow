@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.bloomreach.forge.review-workflow</groupId>
         <artifactId>review-workflow</artifactId>
-        <version>2.0.0</version>
+        <version>3.0.0</version>
     </parent>
 
     <name>Review Workflow HST</name>
@@ -53,6 +53,11 @@
             <groupId>org.onehippo.cms7</groupId>
             <artifactId>hippo-repository-builtin</artifactId>
             <version>${hippo.repository.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
             <scope>provided</scope>
         </dependency>
     </dependencies>
