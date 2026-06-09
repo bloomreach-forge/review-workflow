@@ -13,3 +13,6 @@
     - reviewworkflow:creationdate (date)
     - reviewworkflow:uuid (string)
     - reviewworkflow:checked (boolean)
+    - hippostdpubwf:creationDate (date)
+    - hippostdpubwf:type (string)
+    - hippostdpubwf:username (string)

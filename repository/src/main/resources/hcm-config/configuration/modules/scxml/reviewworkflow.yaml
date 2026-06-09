@@ -57,6 +57,14 @@ definitions:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.documentworkflow.action.SetHolderAction
         hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /setTransferable:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.SetTransferableAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /setRetainable:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.SetRetainableAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
       /deleteRequest:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.documentworkflow.action.DeleteRequestAction
@@ -68,6 +76,34 @@ definitions:
       /version:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.documentworkflow.action.VersionVariantAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /listBranches:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.ListBranchesAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /branch:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.BranchAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /getBranch:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.GetBranchAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /checkoutBranch:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.CheckoutBranchAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /removeBranch:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.RemoveBranchAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /setPreReintegrationLabels:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.SetPreReintegrationLabelsAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /label:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.LabelAction
         hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
       /listVersions:
         jcr:primaryType: hipposcxml:action
@@ -85,6 +121,10 @@ definitions:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.documentworkflow.action.VersionRestoreToAction
         hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /restoreVersionByVersion:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.RestoreVersionByVersionAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
       /workflowException:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.scxml.WorkflowExceptionAction
@@ -96,6 +136,10 @@ definitions:
       /rejectRequest:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.onehippo.repository.documentworkflow.action.RejectRequestAction
+        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
+      /listGroups:
+        jcr:primaryType: hipposcxml:action
+        hipposcxml:classname: org.bloomreach.forge.reviewworkflow.repository.scxml.ListGroupsAction
         hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
       /requestReview:
         jcr:primaryType: hipposcxml:action
@@ -116,40 +160,4 @@ definitions:
       /isEligibleForReview:
         jcr:primaryType: hipposcxml:action
         hipposcxml:classname: org.bloomreach.forge.reviewworkflow.repository.scxml.IsEligibleForReviewAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /checkoutBranch:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.CheckoutBranchAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /restoreVersionByVersion:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.RestoreVersionByVersionAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /listBranches:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.ListBranchesAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /branch:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.BranchAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /getBranch:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.GetBranchAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /removeBranch:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.RemoveBranchAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /setPreReintegrationLabels:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.SetPreReintegrationLabelsAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /label:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.onehippo.repository.documentworkflow.action.LabelAction
-        hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml
-      /listGroups:
-        jcr:primaryType: hipposcxml:action
-        hipposcxml:classname: org.bloomreach.forge.reviewworkflow.repository.scxml.ListGroupsAction
         hipposcxml:namespace: http://www.onehippo.org/cms7/repository/scxml

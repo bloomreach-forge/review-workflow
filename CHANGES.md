@@ -1,4 +1,6 @@
 # Review/Assignment Workflow
+## 3.0.0
+FORGE-603 - Upgrade to v17
 ## 2.0.0
 FORGE-538 - Upgrade to v16
 ## 1.2.1

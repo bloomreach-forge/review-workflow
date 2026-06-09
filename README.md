@@ -14,6 +14,7 @@ The assigned group's members are the only ones that can accept or reject the req
 | 12.x | 0.2.x   |
 | 14.x | 1.2.1   |
 | 16.x | 2.0.0   |
+| 17.x | 3.0.0   |
 
 See [CHANGES](CHANGES.md) for release notes.
 
@@ -240,15 +241,19 @@ Document link: http://localhost:8080/site/preview/news/2016/12/the-medusa-news.h
 
 These modules are not supported by Bloomreach and can be used as inspiration or only for demo purposes.
 
-#### 7. Use FakeSmtp as SMTP server for emails
+#### 7. Use MailHog as SMTP server for emails
 
-* Download  FakeSMTP from: [https://github.com/Nilhcem/FakeSMTP](https://github.com/Nilhcem/FakeSMTP)
+* Install MailHog:
+  * macOS: `brew install mailhog`
+  * Docker: `docker run -p 1025:1025 -p 8025:8025 mailhog/mailhog`
 
 * Run it as:
 
 ```bash
-java -jar fakeSMTP-2.0.jar -s  -p 2525 -a 127.0.0.1
+mailhog
 ```
+
+* SMTP listens on `127.0.0.1:1025`, web UI at [http://localhost:8025](http://localhost:8025)
 * Email module in demo project is already configured to use the above information
 
 ## Use

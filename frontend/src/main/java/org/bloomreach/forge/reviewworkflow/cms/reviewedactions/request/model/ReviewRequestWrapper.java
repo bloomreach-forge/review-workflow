@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Bloomreach (https://www.bloomreach.com)
+ * Copyright 2026 Bloomreach (https://www.bloomreach.com)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,9 +30,11 @@ public class ReviewRequestWrapper extends Request {
     public ReviewRequestWrapper(final Request request, final Node requestNode) throws RepositoryException {
         super(
                 request.getId(),
+                request.getCreated(),
+                request.getReason(),
                 request.getSchedule(),
                 "review-" + requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_STATE).getString(),
-                Collections.singletonMap("infoRequest", request.getInfo())
+                Collections.singletonMap(Request.INFO_REQUEST, request.getInfo())
         );
         this.requestNode = requestNode;
     }
@@ -47,10 +49,6 @@ public class ReviewRequestWrapper extends Request {
 
     public String getReviewedBy() throws RepositoryException {
         return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REVIEWEDBY).getString();
-    }
-
-    public String getReason() throws RepositoryException {
-        return requestNode.getProperty(ReviewWorkflowNodeType.REVIEWWORKFLOW_REASON).getString();
     }
 
     @Override
